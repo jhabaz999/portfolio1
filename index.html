@@ -1,0 +1,906 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width,initial-scale=1.0"/>
+<title>Khaldoon Mustansir — Portfolio</title>
+<link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;600;700;900&family=Rajdhani:wght@300;400;500;600;700&family=Share+Tech+Mono&display=swap" rel="stylesheet"/>
+<style>
+:root{
+  --bg:#010308;--bg2:#030912;--bg3:#060d1e;
+  --cyan:#00f5ff;--purple:#a855f7;--green:#00ff88;
+  --amber:#ffb800;--rose:#ff4d6d;--blue:#3b82f6;
+  --text:#cdd6f4;--text2:#7c8db5;--text3:#3a4660;
+  --border:rgba(0,245,255,0.1);--border2:rgba(0,245,255,0.22);
+  --glow:0 0 20px rgba(0,245,255,0.3),0 0 60px rgba(0,245,255,0.1);
+}
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0;cursor:none!important}
+html{scroll-behavior:smooth}
+body{background:var(--bg);color:var(--text);font-family:'Rajdhani',sans-serif;overflow-x:hidden;line-height:1.6}
+::-webkit-scrollbar{width:4px}::-webkit-scrollbar-track{background:var(--bg)}::-webkit-scrollbar-thumb{background:linear-gradient(var(--cyan),var(--purple));border-radius:2px}
+
+/* CURSOR */
+#cdot{position:fixed;z-index:99999;width:8px;height:8px;border-radius:50%;background:var(--cyan);box-shadow:0 0 12px var(--cyan),0 0 24px rgba(0,245,255,.5);pointer-events:none;transform:translate(-50%,-50%)}
+#cring{position:fixed;z-index:99998;width:36px;height:36px;border-radius:50%;border:1px solid rgba(0,245,255,.5);pointer-events:none;transform:translate(-50%,-50%);transition:width .25s,height .25s,border-color .2s,background .2s}
+
+/* STARS */
+#stars{position:fixed;inset:0;z-index:0;pointer-events:none;overflow:hidden}
+.star{position:absolute;border-radius:50%;background:#fff;animation:twinkle var(--d,3s) var(--dl,0s) infinite alternate ease-in-out}
+@keyframes twinkle{0%{opacity:var(--lo,.1)}100%{opacity:var(--hi,.9)}}
+
+/* NEBULA */
+#nebula{position:fixed;inset:0;z-index:0;pointer-events:none}
+.nblob{position:absolute;border-radius:50%;filter:blur(90px);animation:ndrift 20s infinite alternate ease-in-out}
+@keyframes ndrift{0%{transform:translate(0,0) scale(1)}100%{transform:translate(25px,18px) scale(1.06)}}
+
+/* NAV */
+nav{position:fixed;top:0;left:0;right:0;z-index:500;height:64px;display:flex;align-items:center;justify-content:space-between;padding:0 48px;background:rgba(1,3,8,.78);backdrop-filter:blur(20px);border-bottom:1px solid var(--border)}
+.nav-logo{font-family:'Orbitron',monospace;font-weight:900;font-size:1.05rem;color:var(--cyan);text-decoration:none;letter-spacing:.1em;text-shadow:0 0 18px rgba(0,245,255,.6)}
+.nav-links{display:flex;gap:2px}
+.nl{font-family:'Share Tech Mono',monospace;font-size:.7rem;letter-spacing:.1em;text-transform:uppercase;color:var(--text2);text-decoration:none;padding:6px 14px;border:1px solid transparent;transition:all .2s;clip-path:polygon(7px 0,100% 0,100% calc(100% - 7px),calc(100% - 7px) 100%,0 100%,0 7px)}
+.nl:hover{color:var(--cyan);border-color:var(--border2);background:rgba(0,245,255,.05)}
+#abtn{font-family:'Share Tech Mono',monospace;font-size:.65rem;letter-spacing:.1em;text-transform:uppercase;background:transparent;border:1px solid var(--text3);color:var(--text3);padding:6px 14px;clip-path:polygon(7px 0,100% 0,100% calc(100% - 7px),calc(100% - 7px) 100%,0 100%,0 7px);transition:all .2s}
+#abtn:hover{border-color:var(--rose);color:var(--rose)}
+#abtn.on{border-color:var(--rose);color:var(--rose);box-shadow:0 0 12px rgba(255,77,109,.3)}
+
+/* HERO */
+#hero{min-height:100vh;display:flex;align-items:center;padding:100px 80px 80px;position:relative;z-index:1;overflow:hidden}
+.hero-content{position:relative;z-index:2;max-width:760px}
+
+/* 3D PLANET SYSTEM */
+#psys{position:absolute;right:-60px;top:50%;transform:translateY(-50%);z-index:1;pointer-events:none;width:560px;height:560px}
+.pring{position:absolute;left:50%;top:50%;border-radius:50%;border-style:solid;border-color:rgba(100,180,255,.2);transform:translate(-50%,-50%) rotateX(74deg)}
+.pr1{width:370px;height:370px;border-width:12px}
+.pr2{width:430px;height:430px;border-width:5px;border-color:rgba(100,180,255,.1)}
+.pr3{width:472px;height:472px;border-width:2px;border-color:rgba(100,180,255,.06)}
+#belt{position:absolute;left:50%;top:50%;transform:translate(-50%,-50%) rotateX(70deg);width:520px;height:520px;border-radius:50%;animation:bspin 55s linear infinite}
+@keyframes bspin{to{transform:translate(-50%,-50%) rotateX(70deg) rotateZ(360deg)}}
+.ast{position:absolute;border-radius:50%;background:rgba(150,170,200,.55)}
+/* Main planet */
+.pmain{position:absolute;left:50%;top:50%;transform:translate(-50%,-50%);width:272px;height:272px;border-radius:50%;background:radial-gradient(ellipse at 36% 34%,#1a6bff 0%,#0c3d99 26%,#081b4a 56%,#030914 82%);box-shadow:inset -38px -18px 58px rgba(0,0,0,.82),inset 18px 14px 38px rgba(100,180,255,.13),0 0 55px rgba(0,100,255,.28),0 0 110px rgba(0,60,200,.12);overflow:hidden;animation:pglow 8s ease-in-out infinite alternate}
+.pmain::before{content:'';position:absolute;inset:0;border-radius:50%;background:repeating-linear-gradient(14deg,transparent 0,transparent 7px,rgba(30,80,200,.1) 7px,rgba(30,80,200,.1) 9px);animation:pbands 22s linear infinite}
+.pmain::after{content:'';position:absolute;inset:0;border-radius:50%;background:radial-gradient(ellipse at 68% 28%,rgba(170,215,255,.11) 0%,transparent 52%)}
+@keyframes pglow{0%{box-shadow:inset -38px -18px 58px rgba(0,0,0,.82),inset 18px 14px 38px rgba(100,180,255,.13),0 0 55px rgba(0,100,255,.28),0 0 110px rgba(0,60,200,.12)}100%{box-shadow:inset -42px -22px 62px rgba(0,0,0,.86),inset 14px 10px 32px rgba(100,180,255,.09),0 0 75px rgba(0,120,255,.33),0 0 130px rgba(0,70,220,.16)}}
+@keyframes pbands{to{background-position:272px 0}}
+/* Moon */
+.pmoon{position:absolute;left:50%;top:50%;width:48px;height:48px;border-radius:50%;margin:-24px 0 0 -24px;background:radial-gradient(ellipse at 35% 35%,#8a9bc4,#3c4d6b 60%,#191e30);box-shadow:inset -7px -5px 14px rgba(0,0,0,.7),0 0 14px rgba(150,180,220,.18);animation:morbit 11s linear infinite}
+@keyframes morbit{0%{transform:rotate(0deg) translateX(162px)}to{transform:rotate(360deg) translateX(162px)}}
+/* Small purple planet */
+.psmall{position:absolute;width:88px;height:88px;left:32px;top:62px;border-radius:50%;background:radial-gradient(ellipse at 35% 35%,#c084fc,#7c3aed 46%,#3b0764 82%);box-shadow:inset -14px -9px 24px rgba(0,0,0,.72),inset 7px 5px 14px rgba(200,150,255,.13),0 0 28px rgba(168,85,247,.38),0 0 56px rgba(168,85,247,.14);animation:pfloat 7s ease-in-out infinite alternate}
+.psmall::before{content:'';position:absolute;inset:0;border-radius:50%;background:radial-gradient(ellipse at 64% 26%,rgba(255,255,255,.11) 0%,transparent 44%)}
+@keyframes pfloat{to{transform:translate(9px,13px)}}
+/* Tiny distant planet */
+.ptiny{position:absolute;width:32px;height:32px;right:40px;bottom:100px;border-radius:50%;background:radial-gradient(ellipse at 38% 36%,#fdba74,#c2410c 55%,#7c1400);box-shadow:inset -5px -4px 10px rgba(0,0,0,.7),0 0 18px rgba(250,100,20,.3);animation:pfloat 11s ease-in-out infinite alternate-reverse}
+
+/* HERO CONTENT */
+.hero-tag{font-family:'Share Tech Mono',monospace;font-size:.68rem;letter-spacing:.15em;text-transform:uppercase;color:var(--cyan);display:flex;align-items:center;gap:10px;margin-bottom:22px}
+.hero-tag::before{content:'';display:block;width:28px;height:1px;background:var(--cyan);box-shadow:0 0 8px var(--cyan)}
+.htdot{width:6px;height:6px;border-radius:50%;background:var(--cyan);box-shadow:0 0 10px var(--cyan);animation:blink 2s infinite}
+@keyframes blink{0%,100%{opacity:1}50%{opacity:.2}}
+.hero-name{font-family:'Orbitron',monospace;font-weight:900;font-size:clamp(2.6rem,5.5vw,5.2rem);line-height:.98;letter-spacing:-.01em;margin-bottom:8px;color:#fff}
+.hero-name span{background:linear-gradient(130deg,var(--cyan) 0%,var(--purple) 100%);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;filter:drop-shadow(0 0 18px rgba(0,245,255,.4))}
+.hero-role{font-family:'Rajdhani',sans-serif;font-weight:500;font-size:clamp(.92rem,1.6vw,1.2rem);color:var(--text2);letter-spacing:.06em;margin-bottom:22px}
+.hero-bio{font-size:.92rem;color:var(--text2);line-height:1.9;max-width:580px;margin-bottom:34px}
+.hero-stats{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin-bottom:38px;max-width:390px}
+.hstat{background:rgba(0,245,255,.04);border:1px solid var(--border);padding:13px;position:relative;clip-path:polygon(5px 0,100% 0,100% calc(100% - 5px),calc(100% - 5px) 100%,0 100%,0 5px)}
+.hstat::before{content:'';position:absolute;top:0;left:0;right:0;height:1px;background:linear-gradient(90deg,var(--cyan),transparent)}
+.hstat-n{font-family:'Orbitron',monospace;font-weight:700;font-size:1.35rem;color:#fff;line-height:1}
+.hstat-n sup{font-size:.72rem;color:var(--cyan)}
+.hstat-l{font-family:'Share Tech Mono',monospace;font-size:.56rem;color:var(--text3);letter-spacing:.08em;text-transform:uppercase;margin-top:3px}
+.hero-btns{display:flex;gap:12px;flex-wrap:wrap}
+.mgithub{font-family:"Share Tech Mono",monospace;font-size:.68rem;letter-spacing:.1em;text-transform:uppercase;color:var(--green);border:1px solid var(--green);padding:8px 18px;text-decoration:none;display:inline-block;transition:all .2s;clip-path:polygon(6px 0,100% 0,100% calc(100% - 6px),calc(100% - 6px) 100%,0 100%,0 6px)}
+.mgithub:hover{background:rgba(0,255,136,.08);box-shadow:0 0 14px rgba(0,255,136,.25);text-shadow:0 0 8px var(--green)}
+.hero-email{color:var(--cyan);text-decoration:none;border-bottom:1px solid rgba(0,245,255,.35);transition:border-color .2s,text-shadow .2s}
+.hero-email:hover{border-color:var(--cyan);text-shadow:0 0 10px var(--cyan)}
+.bp{font-family:'Orbitron',monospace;font-weight:600;font-size:.7rem;letter-spacing:.1em;text-transform:uppercase;background:transparent;color:var(--cyan);border:1px solid var(--cyan);padding:12px 26px;text-decoration:none;transition:all .25s;clip-path:polygon(9px 0,100% 0,100% calc(100% - 9px),calc(100% - 9px) 100%,0 100%,0 9px)}
+.bp:hover{box-shadow:var(--glow);text-shadow:0 0 10px var(--cyan);background:rgba(0,245,255,.06)}
+.bs{font-family:'Orbitron',monospace;font-weight:600;font-size:.7rem;letter-spacing:.1em;text-transform:uppercase;background:transparent;color:var(--purple);border:1px solid var(--purple);padding:12px 26px;text-decoration:none;transition:all .25s;clip-path:polygon(9px 0,100% 0,100% calc(100% - 9px),calc(100% - 9px) 100%,0 100%,0 9px)}
+.bs:hover{box-shadow:0 0 20px rgba(168,85,247,.35);text-shadow:0 0 10px var(--purple);background:rgba(168,85,247,.06)}
+
+/* SECTION BASE */
+section{padding:96px 80px;position:relative;z-index:1}
+section::before{content:'';position:absolute;inset:0;background:repeating-linear-gradient(0deg,transparent,transparent 2px,rgba(0,245,255,.006) 2px,rgba(0,245,255,.006) 4px);pointer-events:none;z-index:0}
+section > *{position:relative;z-index:1}
+#about{background:linear-gradient(180deg,var(--bg) 0%,var(--bg2) 100%)}
+#skills{background:var(--bg2)}
+#projects{background:linear-gradient(180deg,var(--bg2) 0%,var(--bg) 100%)}
+#experience{background:var(--bg)}
+#contact{background:linear-gradient(180deg,var(--bg) 0%,var(--bg3) 100%)}
+.slbl{font-family:'Share Tech Mono',monospace;font-size:.63rem;letter-spacing:.18em;text-transform:uppercase;color:var(--cyan);display:flex;align-items:center;gap:10px;margin-bottom:10px}
+.slbl::before{content:'// ';color:var(--text3)}
+.stitle{font-family:'Orbitron',monospace;font-weight:700;font-size:clamp(1.55rem,2.8vw,2.3rem);color:#fff;line-height:1.1;letter-spacing:-.01em;margin-bottom:52px}
+.stitle em{background:linear-gradient(90deg,var(--cyan),var(--purple));-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;font-style:normal}
+
+/* ABOUT */
+.ag{display:grid;grid-template-columns:1.2fr 1fr;gap:60px;align-items:start}
+.atext p{color:var(--text2);line-height:1.9;margin-bottom:18px;font-size:.9rem}
+.acard{background:rgba(0,245,255,.03);border:1px solid var(--border);position:relative;overflow:hidden}
+.acard::before{content:'';position:absolute;top:0;left:0;right:0;height:2px;background:linear-gradient(90deg,var(--cyan),var(--purple),transparent)}
+.acard-hd{padding:13px 18px;border-bottom:1px solid var(--border);font-family:'Share Tech Mono',monospace;font-size:.62rem;letter-spacing:.12em;text-transform:uppercase;color:var(--text3)}
+.ar{display:flex;justify-content:space-between;align-items:center;padding:10px 18px;border-bottom:1px solid rgba(0,245,255,.05)}
+.ar:last-child{border-bottom:none}
+.ark{font-family:'Share Tech Mono',monospace;font-size:.63rem;color:var(--text3);letter-spacing:.07em;text-transform:uppercase}
+.arv{font-size:.82rem;color:var(--text);text-align:right}
+.arv a{color:var(--cyan);text-decoration:none}
+.arv a:hover{text-shadow:0 0 8px var(--cyan)}
+
+/* SKILLS */
+.skg{display:grid;grid-template-columns:repeat(auto-fill,minmax(228px,1fr));gap:14px}
+.skc{background:rgba(255,255,255,.025);border:1px solid var(--border);padding:22px;position:relative;overflow:hidden;transition:all .3s;clip-path:polygon(0 0,calc(100% - 14px) 0,100% 14px,100% 100%,14px 100%,0 calc(100% - 14px))}
+.skc::before{content:'';position:absolute;top:0;left:0;width:3px;height:100%;background:var(--skc,var(--cyan));box-shadow:0 0 10px var(--skc,var(--cyan))}
+.skc:hover{border-color:rgba(0,245,255,.2);transform:translateY(-4px);box-shadow:0 8px 32px rgba(0,0,0,.4)}
+.ski{font-size:1.4rem;margin-bottom:11px}
+.skn{font-family:'Orbitron',monospace;font-weight:600;font-size:.75rem;color:#fff;margin-bottom:11px;letter-spacing:.05em}
+.skt{display:flex;flex-wrap:wrap;gap:5px}
+.sktag{font-family:'Share Tech Mono',monospace;font-size:.6rem;padding:3px 7px;background:rgba(255,255,255,.05);border:1px solid rgba(255,255,255,.08);color:var(--text2)}
+
+/* PROJECTS */
+.pfs{display:flex;gap:7px;flex-wrap:wrap;margin-bottom:36px}
+.pf{font-family:'Share Tech Mono',monospace;font-size:.65rem;letter-spacing:.08em;text-transform:uppercase;background:transparent;border:1px solid var(--text3);color:var(--text3);padding:6px 14px;transition:all .2s;clip-path:polygon(5px 0,100% 0,100% calc(100% - 5px),calc(100% - 5px) 100%,0 100%,0 5px)}
+.pf:hover,.pf.active{border-color:var(--cyan);color:var(--cyan);background:rgba(0,245,255,.06);box-shadow:0 0 12px rgba(0,245,255,.15)}
+.pg{display:grid;grid-template-columns:repeat(auto-fill,minmax(318px,1fr));gap:18px}
+.pc{background:rgba(255,255,255,.02);border:1px solid var(--border);padding:22px;position:relative;overflow:hidden;display:flex;flex-direction:column;transition:all .3s;clip-path:polygon(0 0,calc(100% - 18px) 0,100% 18px,100% 100%,18px 100%,0 calc(100% - 18px))}
+.pc[data-hide]{display:none}
+.pc::before{content:'';position:absolute;top:0;left:0;right:0;height:2px;background:linear-gradient(90deg,var(--cc,var(--cyan)),transparent)}
+.pc:hover{border-color:var(--border2);transform:translateY(-5px);box-shadow:0 14px 44px rgba(0,0,0,.5),0 0 28px rgba(0,245,255,.07)}
+.ptop{display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:13px}
+.pbadge{font-family:'Share Tech Mono',monospace;font-size:.58rem;letter-spacing:.07em;text-transform:uppercase;padding:3px 9px;border:1px solid var(--cc,var(--cyan));color:var(--cc,var(--cyan));background:rgba(0,245,255,.04)}
+.pemoji{font-size:1.25rem}
+.ptitle{font-family:'Orbitron',monospace;font-weight:600;font-size:.79rem;color:#fff;line-height:1.4;margin-bottom:11px;letter-spacing:.03em}
+.pdesc{font-size:.8rem;color:var(--text2);line-height:1.75;flex:1;margin-bottom:14px}
+.pstack{display:flex;flex-wrap:wrap;gap:5px;margin-bottom:14px}
+.ptag{font-family:'Share Tech Mono',monospace;font-size:.58rem;padding:2px 7px;background:rgba(255,255,255,.04);border:1px solid var(--border);color:var(--text3)}
+.pact{font-family:'Share Tech Mono',monospace;font-size:.62rem;letter-spacing:.1em;text-transform:uppercase;display:flex;align-items:center;gap:5px;transition:gap .2s;margin-top:auto}
+.pc:hover .pact{gap:10px}
+
+/* EXPERIENCE */
+.tl{position:relative;padding-left:26px}
+.tl::before{content:'';position:absolute;left:0;top:0;bottom:0;width:1px;background:linear-gradient(to bottom,var(--cyan),var(--purple),transparent)}
+.ti{position:relative;margin-bottom:52px}
+.ti::before{content:'';position:absolute;left:-31px;top:3px;width:11px;height:11px;border-radius:50%;background:var(--bg);border:2px solid var(--cyan);box-shadow:0 0 11px var(--cyan),0 0 18px rgba(0,245,255,.28)}
+.tper{font-family:'Share Tech Mono',monospace;font-size:.63rem;letter-spacing:.1em;color:var(--cyan);margin-bottom:3px}
+.trole{font-family:'Orbitron',monospace;font-weight:600;font-size:.88rem;color:#fff;margin-bottom:2px;letter-spacing:.04em}
+.tco{font-family:'Share Tech Mono',monospace;font-size:.68rem;color:var(--purple);margin-bottom:11px}
+.tbl{list-style:none}
+.tbl li{font-size:.875rem;color:var(--text2);padding:3px 0 3px 13px;position:relative;line-height:1.7}
+.tbl li::before{content:'\25BA';position:absolute;left:0;color:var(--cyan);font-size:.72rem;top:5px}
+
+/* CONTACT */
+.cw{display:grid;grid-template-columns:1fr 1fr;gap:60px;align-items:start}
+.cintro{font-size:.9rem;color:var(--text2);line-height:1.9;margin-bottom:26px}
+.cls{display:flex;flex-direction:column;gap:9px}
+.clink{display:flex;align-items:center;gap:13px;font-size:.875rem;color:var(--text2);text-decoration:none;padding:13px 16px;border:1px solid var(--border);background:rgba(0,245,255,.02);transition:all .2s;clip-path:polygon(5px 0,100% 0,100% calc(100% - 5px),calc(100% - 5px) 100%,0 100%,0 5px)}
+.clink:hover{border-color:var(--cyan);color:var(--cyan);background:rgba(0,245,255,.05);transform:translateX(4px)}
+.cf{display:flex;flex-direction:column;gap:13px}
+.cfl{font-family:'Share Tech Mono',monospace;font-size:.6rem;letter-spacing:.12em;text-transform:uppercase;color:var(--text3);display:block;margin-bottom:5px}
+.cfi,.cft{width:100%;background:rgba(0,245,255,.03);border:1px solid var(--border);color:var(--text);font-family:'Rajdhani',sans-serif;font-size:.88rem;padding:10px 13px;outline:none;transition:border-color .2s,box-shadow .2s;resize:vertical;clip-path:polygon(3px 0,100% 0,100% calc(100% - 3px),calc(100% - 3px) 100%,0 100%,0 3px)}
+.cfi:focus,.cft:focus{border-color:var(--cyan);box-shadow:0 0 12px rgba(0,245,255,.14)}
+.cft{min-height:108px}
+.bsend{font-family:'Orbitron',monospace;font-weight:600;font-size:.7rem;letter-spacing:.1em;text-transform:uppercase;background:transparent;color:var(--green);border:1px solid var(--green);padding:12px 26px;transition:all .25s;clip-path:polygon(9px 0,100% 0,100% calc(100% - 9px),calc(100% - 9px) 100%,0 100%,0 9px)}
+.bsend:hover{box-shadow:0 0 18px rgba(0,255,136,.28);text-shadow:0 0 10px var(--green)}
+
+footer{padding:24px 80px;border-top:1px solid var(--border);display:flex;justify-content:space-between;align-items:center;position:relative;z-index:1;background:var(--bg3)}
+.ft{font-family:'Share Tech Mono',monospace;font-size:.62rem;letter-spacing:.06em;color:var(--text3)}
+.ft em{color:var(--cyan);font-style:normal}
+
+/* MODAL */
+#mbg{position:fixed;inset:0;z-index:800;background:rgba(1,3,8,.88);backdrop-filter:blur(16px);display:none;justify-content:center;align-items:flex-start;padding:40px 20px;overflow-y:auto}
+#mbg.open{display:flex}
+.modal{background:var(--bg2);border:1px solid var(--border2);width:min(790px,100%);position:relative;overflow:hidden;animation:mopen .3s cubic-bezier(.23,1,.32,1);clip-path:polygon(0 0,calc(100% - 22px) 0,100% 22px,100% 100%,22px 100%,0 calc(100% - 22px))}
+.modal::before{content:'';position:absolute;top:0;left:0;right:0;height:2px;background:linear-gradient(90deg,var(--mc,var(--cyan)),var(--purple),transparent)}
+@keyframes mopen{from{opacity:0;transform:translateY(22px) scale(.98)}to{opacity:1;transform:none}}
+.mi{padding:30px}
+.mtop{display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:7px}
+.mbadge{font-family:'Share Tech Mono',monospace;font-size:.62rem;letter-spacing:.1em;text-transform:uppercase;padding:3px 11px;border:1px solid var(--mc,var(--cyan));color:var(--mc,var(--cyan));background:rgba(0,245,255,.05)}
+.mx{background:rgba(255,255,255,.05);border:1px solid var(--border);color:var(--text2);width:30px;height:30px;font-size:.95rem;transition:all .2s}
+.mx:hover{border-color:var(--rose);color:var(--rose)}
+.mtitle{font-family:'Orbitron',monospace;font-weight:700;font-size:1.05rem;color:#fff;line-height:1.3;letter-spacing:.03em;margin-bottom:22px}
+.mtabs{display:flex;border-bottom:1px solid var(--border);margin-bottom:22px}
+.mtab{font-family:'Share Tech Mono',monospace;font-size:.63rem;letter-spacing:.1em;text-transform:uppercase;background:none;border:none;padding:9px 16px;color:var(--text3);border-bottom:2px solid transparent;margin-bottom:-1px;transition:all .18s}
+.mtab.active{color:var(--mc,var(--cyan));border-bottom-color:var(--mc,var(--cyan))}
+.mpane{display:none}
+.mpane.active{display:block}
+.mbuls{list-style:none;margin-bottom:20px}
+.mbuls li{font-size:.86rem;color:var(--text2);padding:6px 0 6px 16px;position:relative;border-bottom:1px solid rgba(255,255,255,.04);line-height:1.7}
+.mbuls li:last-child{border-bottom:none}
+.mbuls li::before{content:'\25BA';position:absolute;left:0;color:var(--mc,var(--cyan));top:8px;font-size:.78rem}
+.mslbl{font-family:'Share Tech Mono',monospace;font-size:.6rem;letter-spacing:.12em;text-transform:uppercase;color:var(--text3);margin-bottom:9px}
+.mstk{display:flex;flex-wrap:wrap;gap:6px}
+.mtag{font-family:'Share Tech Mono',monospace;font-size:.65rem;padding:3px 11px;border:1px solid var(--mc,var(--cyan));color:var(--mc,var(--cyan));background:rgba(0,245,255,.04)}
+.cblk{background:var(--bg);border:1px solid var(--border);overflow:hidden;margin-top:3px}
+.chd{display:flex;justify-content:space-between;align-items:center;padding:9px 14px;background:rgba(0,245,255,.04);border-bottom:1px solid var(--border)}
+.cfn{font-family:'Share Tech Mono',monospace;font-size:.65rem;color:var(--text3)}
+.cdots{display:flex;gap:5px}
+.cdot{width:9px;height:9px;border-radius:50%}
+.cbody{font-family:'Share Tech Mono',monospace;font-size:.7rem;line-height:1.85;color:#8590b5;padding:18px;max-height:360px;overflow-y:auto;white-space:pre;tab-size:2}
+.cbody::-webkit-scrollbar{width:3px}
+.cbody::-webkit-scrollbar-thumb{background:var(--border2)}
+.ky{color:#c084fc}.fn{color:#60a5fa}.st{color:#4ade80}.cm{color:#3a4455;font-style:italic}.nm{color:#fb923c}
+.nocode{font-family:'Share Tech Mono',monospace;font-size:.7rem;color:var(--text3);text-align:center;padding:44px 0}
+.nocode span{display:block;margin-top:7px;font-size:.6rem}
+
+/* LOGIN */
+#lbg{position:fixed;inset:0;z-index:1000;background:rgba(1,3,8,.92);backdrop-filter:blur(18px);display:none;justify-content:center;align-items:center}
+#lbg.open{display:flex}
+.lbox{background:var(--bg3);border:1px solid var(--rose);width:330px;padding:38px;position:relative;overflow:hidden;animation:mopen .3s ease;clip-path:polygon(0 0,calc(100% - 18px) 0,100% 18px,100% 100%,18px 100%,0 calc(100% - 18px))}
+.lbox::before{content:'';position:absolute;top:0;left:0;right:0;height:2px;background:var(--rose);box-shadow:0 0 18px rgba(255,77,109,.5)}
+.licon{font-size:1.9rem;text-align:center;margin-bottom:14px}
+.ltitle{font-family:'Orbitron',monospace;font-weight:700;font-size:1.05rem;color:#fff;text-align:center;margin-bottom:5px;letter-spacing:.05em}
+.lsub{font-family:'Share Tech Mono',monospace;font-size:.6rem;letter-spacing:.1em;text-transform:uppercase;color:var(--text3);text-align:center;margin-bottom:26px}
+.linput{width:100%;background:rgba(255,77,109,.05);border:1px solid rgba(255,77,109,.28);color:#fff;font-family:'Share Tech Mono',monospace;font-size:.82rem;padding:12px;text-align:center;letter-spacing:.12em;outline:none;transition:border-color .2s;margin-bottom:12px}
+.linput:focus{border-color:var(--rose);box-shadow:0 0 10px rgba(255,77,109,.2)}
+.lbtn{width:100%;background:transparent;color:var(--rose);border:1px solid var(--rose);font-family:'Orbitron',monospace;font-weight:600;font-size:.7rem;letter-spacing:.1em;text-transform:uppercase;padding:12px;transition:all .2s}
+.lbtn:hover{background:rgba(255,77,109,.1);box-shadow:0 0 18px rgba(255,77,109,.28)}
+.lerr{font-family:'Share Tech Mono',monospace;font-size:.62rem;color:var(--rose);text-align:center;margin-top:9px;display:none}
+.lcancel{display:block;margin-top:13px;background:none;border:none;font-family:'Share Tech Mono',monospace;font-size:.6rem;letter-spacing:.08em;text-transform:uppercase;color:var(--text3);width:100%;text-align:center;transition:color .18s}
+.lcancel:hover{color:var(--text)}
+
+/* ADMIN DRAWER */
+#admbg{position:fixed;inset:0;z-index:950;background:rgba(1,3,8,.78);backdrop-filter:blur(12px);display:none;justify-content:flex-end}
+#admbg.open{display:flex}
+.admdw{background:var(--bg3);border-left:1px solid var(--border);width:min(452px,100vw);display:flex;flex-direction:column;overflow:hidden;animation:slideR .3s cubic-bezier(.23,1,.32,1)}
+@keyframes slideR{from{transform:translateX(100%)}to{transform:translateX(0)}}
+.admhd{padding:18px 22px;border-bottom:1px solid var(--border);display:flex;justify-content:space-between;align-items:center;background:rgba(255,77,109,.04)}
+.admtitle{font-family:'Orbitron',monospace;font-weight:700;font-size:.85rem;color:var(--rose);letter-spacing:.08em}
+.admx{background:none;border:none;color:var(--text3);font-size:1.15rem;transition:color .18s}
+.admx:hover{color:var(--rose)}
+.atabs{display:flex;border-bottom:1px solid var(--border);padding:0 22px;background:rgba(0,0,0,.2)}
+.atab{font-family:'Share Tech Mono',monospace;font-size:.6rem;letter-spacing:.08em;text-transform:uppercase;background:none;border:none;padding:9px 11px;color:var(--text3);border-bottom:2px solid transparent;margin-bottom:-1px;transition:all .18s}
+.atab.active{color:var(--rose);border-bottom-color:var(--rose)}
+.admbody{flex:1;overflow-y:auto;padding:20px 22px}
+.af{margin-bottom:15px}
+.afl{font-family:'Share Tech Mono',monospace;font-size:.6rem;letter-spacing:.1em;text-transform:uppercase;color:var(--text3);margin-bottom:6px;display:block}
+.afi,.afta{width:100%;background:rgba(255,255,255,.04);border:1px solid var(--border);color:var(--text);font-family:'Rajdhani',sans-serif;font-size:.88rem;padding:9px 12px;outline:none;transition:border-color .2s;resize:vertical}
+.afi:focus,.afta:focus{border-color:var(--rose)}
+.afta{min-height:84px}
+.afcode{font-family:'Share Tech Mono',monospace;font-size:.68rem;min-height:126px;line-height:1.6}
+.abtns{display:flex;gap:9px;margin-top:18px}
+.abtn{font-family:'Orbitron',monospace;font-weight:600;font-size:.68rem;letter-spacing:.08em;text-transform:uppercase;background:transparent;color:var(--rose);border:1px solid var(--rose);padding:9px 18px;transition:all .2s}
+.abtn:hover{background:rgba(255,77,109,.1);box-shadow:0 0 11px rgba(255,77,109,.2)}
+.abg{font-family:'Orbitron',monospace;font-weight:600;font-size:.68rem;letter-spacing:.08em;text-transform:uppercase;background:transparent;color:var(--text3);border:1px solid var(--text3);padding:9px 18px;transition:all .2s}
+.abg:hover{border-color:var(--text);color:var(--text)}
+.apane{display:none}
+.apane.active{display:block}
+.afnote{font-size:.78rem;color:var(--text3);line-height:1.7;margin-bottom:14px}
+.pwmsg{font-family:'Share Tech Mono',monospace;font-size:.63rem;margin-top:7px;display:none}
+.crow{display:flex;align-items:center;gap:11px}
+.crow input[type=color]{width:42px;height:32px;border:1px solid var(--border);background:transparent;padding:2px;border-radius:0}
+
+#toast{position:fixed;bottom:26px;left:50%;transform:translateX(-50%) translateY(80px);background:var(--bg);border:1px solid var(--cyan);color:var(--cyan);font-family:'Share Tech Mono',monospace;font-size:.68rem;letter-spacing:.08em;padding:10px 20px;z-index:9999;transition:transform .3s cubic-bezier(.23,1,.32,1),opacity .3s;opacity:0;box-shadow:0 0 20px rgba(0,245,255,.2);white-space:nowrap}
+#toast.show{transform:translateX(-50%) translateY(0);opacity:1}
+
+@keyframes fadeUp{from{opacity:0;transform:translateY(18px)}to{opacity:1;transform:translateY(0)}}
+.fu{opacity:0;animation:fadeUp .5s ease forwards}
+.fu:nth-child(1){animation-delay:.05s}.fu:nth-child(2){animation-delay:.12s}.fu:nth-child(3){animation-delay:.19s}.fu:nth-child(4){animation-delay:.26s}
+
+body.amode [data-editable]{outline:1px dashed rgba(255,77,109,.28)}
+body.amode [data-editable]:hover{outline-color:var(--rose);background:rgba(255,77,109,.03)}
+
+@media(max-width:768px){
+  nav{padding:0 18px}.nav-links{display:none}
+  section{padding:68px 18px}#hero{padding:84px 18px 68px}
+  #psys{display:none}.ag,.cw{grid-template-columns:1fr;gap:28px}
+  footer{padding:18px;flex-direction:column;gap:7px}.admdw{width:100vw}.mi{padding:20px}
+}
+</style>
+</head>
+<body>
+<div id="cdot"></div>
+<div id="cring"></div>
+<div id="stars"></div>
+<div id="nebula">
+  <div class="nblob" style="width:680px;height:680px;top:-200px;right:-80px;background:rgba(0,70,190,.034)"></div>
+  <div class="nblob" style="width:480px;height:480px;bottom:8%;left:-80px;background:rgba(110,0,190,.023);animation-delay:-8s"></div>
+  <div class="nblob" style="width:380px;height:380px;top:42%;left:32%;background:rgba(0,190,140,.016);animation-delay:-14s"></div>
+</div>
+<div id="toast"></div>
+
+<!-- NAV -->
+<nav>
+  <a href="#hero" class="nav-logo">KM</a>
+  <div class="nav-links">
+    <a href="#about" class="nl">About</a>
+    <a href="#skills" class="nl">Skills</a>
+    <a href="#projects" class="nl">Projects</a>
+    <a href="#experience" class="nl">Experience</a>
+    <a href="#contact" class="nl">Contact</a>
+  </div>
+  <button id="abtn" onclick="openLogin()">&#9881; ADMIN</button>
+</nav>
+
+<!-- HERO -->
+<section id="hero">
+  <div id="psys">
+    <div class="pring pr3"></div>
+    <div class="pring pr2"></div>
+    <div class="pring pr1"></div>
+    <div id="belt"></div>
+    <div class="pmain"></div>
+    <div class="pmoon"></div>
+    <div class="psmall"></div>
+    <div class="ptiny"></div>
+  </div>
+  <div class="hero-content">
+    <div class="hero-tag"><div class="htdot"></div>Available for Research &amp; Collaboration</div>
+    <h1 class="hero-name">KHALDOON<br><span>MUSTANSIR</span></h1>
+    <p class="hero-role" data-editable data-field="hero-role">Biomedical Engineer &middot; ML Researcher &middot; Systems Designer</p>
+    <p class="hero-bio" data-editable data-field="hero-bio">M.S. Biomedical Engineering at University of Houston (GPA&nbsp;3.89) &mdash; bridging deep learning, molecular dynamics, and intelligent systems. From classifying leukocytes with EfficientNetB3 to simulating peptide self-assembly and building LLM-powered power system analyzers. Reach me at <a href="mailto:kmustans@CougarNet.UH.EDU" class="hero-email">kmustans@cougarnet.uh.edu</a></p>
+    <div class="hero-stats">
+      <div class="hstat"><div class="hstat-n">3.89<sup>/4</sup></div><div class="hstat-l">GPA</div></div>
+      <div class="hstat"><div class="hstat-n">M.S.</div><div class="hstat-l">Biomedical Eng.</div></div>
+      <div class="hstat"><div class="hstat-n">UH</div><div class="hstat-l">Houston, TX</div></div>
+    </div>
+    <div class="hero-btns">
+      <a href="#projects" class="bp">&#9658; View Projects</a>
+      <a href="#contact" class="bs">&#9672; Get In Touch</a>
+    </div>
+  </div>
+</section>
+
+<!-- ABOUT -->
+<section id="about">
+  <div class="slbl">Background</div>
+  <h2 class="stitle">About <em>Me</em></h2>
+  <div class="ag">
+    <div class="atext">
+      <p data-editable data-field="about1">I am a Master&#39;s student in Biomedical Engineering at the University of Houston, awarded a 50% Graduate Tuition Scholarship for academic excellence. My research spans deep learning for medical imaging, molecular dynamics simulations, and computational drug discovery.</p>
+      <p data-editable data-field="about2">At the UH lab I conduct peptide self-assembly simulations using NAMD and CHARMM-GUI, and develop protein structure prediction workflows with AlphaFold2, RFdiffusion, and Boltz. I also perform end-to-end peptide synthesis using a Liberty Blue SPPS synthesizer.</p>
+      <p data-editable data-field="about3">With a background in Electrical Engineering from NED University, I bring a systems-level perspective to biomedical problems, grounded in real industrial and clinical engineering experience from roles in Pakistan.</p>
+    </div>
+    <div class="acard">
+      <div class="acard-hd">// System Profile</div>
+      <div class="ar"><span class="ark">Location</span><span class="arv">Houston, Texas</span></div>
+      <div class="ar"><span class="ark">Degree</span><span class="arv">M.S. Biomedical Eng.</span></div>
+      <div class="ar"><span class="ark">University</span><span class="arv">University of Houston</span></div>
+      <div class="ar"><span class="ark">GPA</span><span class="arv">3.89 / 4.0</span></div>
+      <div class="ar"><span class="ark">Scholarship</span><span class="arv">50% Tuition Award</span></div>
+      <div class="ar"><span class="ark">Email</span><span class="arv"><a href="mailto:kmustans@CougarNet.UH.EDU">kmustans@cougarnet.uh.edu</a></span></div>
+      <div class="ar"><span class="ark">Phone</span><span class="arv">+1 (984) 390-0904</span></div>
+      <div class="ar"><span class="ark">Languages</span><span class="arv">English &middot; Urdu &middot; Hindi</span></div>
+    </div>
+  </div>
+</section>
+
+<!-- SKILLS -->
+<section id="skills">
+  <div class="slbl">Expertise</div>
+  <h2 class="stitle">Technical <em>Skills</em></h2>
+  <div class="skg">
+    <div class="skc" style="--skc:var(--cyan)"><div class="ski">&#129504;</div><div class="skn">Machine Learning &amp; AI</div><div class="skt"><span class="sktag">TensorFlow</span><span class="sktag">EfficientNet</span><span class="sktag">ResNet</span><span class="sktag">scikit-learn</span><span class="sktag">CNNs</span><span class="sktag">Grad-CAM</span><span class="sktag">SE Attention</span></div></div>
+    <div class="skc" style="--skc:var(--purple)"><div class="ski">&#128300;</div><div class="skn">Biomolecular Engineering</div><div class="skt"><span class="sktag">NAMD</span><span class="sktag">VMD</span><span class="sktag">CHARMM-GUI</span><span class="sktag">PyMOL</span><span class="sktag">AlphaFold2</span><span class="sktag">RFdiffusion</span><span class="sktag">Rosetta</span></div></div>
+    <div class="skc" style="--skc:var(--blue)"><div class="ski">&#128187;</div><div class="skn">Programming &amp; Computing</div><div class="skt"><span class="sktag">Python</span><span class="sktag">C/C++</span><span class="sktag">MATLAB</span><span class="sktag">R</span><span class="sktag">LabVIEW</span><span class="sktag">Simulink</span><span class="sktag">HPC</span></div></div>
+    <div class="skc" style="--skc:var(--amber)"><div class="ski">&#9889;</div><div class="skn">Power &amp; Hardware Eng.</div><div class="skt"><span class="sktag">ETAP</span><span class="sktag">SCADA</span><span class="sktag">PSpice</span><span class="sktag">Multisim</span><span class="sktag">AutoCAD</span><span class="sktag">IoT/MQTT</span></div></div>
+    <div class="skc" style="--skc:var(--rose)"><div class="ski">&#129516;</div><div class="skn">Bioinformatics &amp; Genomics</div><div class="skt"><span class="sktag">Survival Analysis</span><span class="sktag">CNA Data</span><span class="sktag">EEG Processing</span><span class="sktag">Spectral Analysis</span><span class="sktag">Pandas</span></div></div>
+    <div class="skc" style="--skc:var(--green)"><div class="ski">&#129514;</div><div class="skn">Wet Lab &amp; Synthesis</div><div class="skt"><span class="sktag">SPPS</span><span class="sktag">Liberty Blue</span><span class="sktag">Lyophilization</span><span class="sktag">Dialysis</span><span class="sktag">Chromatography</span></div></div>
+  </div>
+</section>
+
+<!-- PROJECTS -->
+<section id="projects">
+  <div class="slbl">Portfolio</div>
+  <h2 class="stitle">Featured <em>Projects</em></h2>
+  <div class="pfs">
+    <button class="pf active" onclick="filterP('all',this)">All Systems</button>
+    <button class="pf" onclick="filterP('ml',this)">Machine Learning</button>
+    <button class="pf" onclick="filterP('bio',this)">Biomedical</button>
+    <button class="pf" onclick="filterP('power',this)">Power &amp; Energy</button>
+    <button class="pf" onclick="filterP('comp',this)">Computational</button>
+  </div>
+  <div class="pg" id="pgrid"></div>
+</section>
+
+<!-- EXPERIENCE -->
+<section id="experience">
+  <div class="slbl">Career Log</div>
+  <h2 class="stitle">Work <em>Experience</em></h2>
+  <div class="tl">
+    <div class="ti">
+      <div class="tper">Dec 2025 &mdash; Present</div>
+      <div class="trole">Graduate Research Assistant</div>
+      <div class="tco">University of Houston &middot; Houston TX</div>
+      <ul class="tbl">
+        <li>Molecular dynamics simulations studying peptide self-assembly using NAMD, CHARMM-GUI, VMD</li>
+        <li>End-to-end peptide synthesis and purification using Liberty Blue automated SPPS equipment</li>
+        <li>Computational workflows for protein structure prediction, molecular docking, and inhibitor design</li>
+      </ul>
+    </div>
+    <div class="ti">
+      <div class="tper">Feb 2024 &mdash; Oct 2024</div>
+      <div class="trole">Junior Engineer</div>
+      <div class="tco">UNICOL &middot; Ethanol Distillery, Pakistan</div>
+      <ul class="tbl">
+        <li>Monitored ethanol concentration at a 100,000 L/day industrial distillery</li>
+        <li>Performed EDA using Python to identify process trends and deviations</li>
+        <li>Reported data insights to senior engineers supporting stable plant operations</li>
+      </ul>
+    </div>
+    <div class="ti">
+      <div class="tper">Jan 2023 &mdash; Dec 2023</div>
+      <div class="trole">Lab Engineer</div>
+      <div class="tco">LUMHS University, Pakistan</div>
+      <ul class="tbl">
+        <li>Managed equipment and assisted experiments for biomedical and electrical engineering courses</li>
+        <li>Conducted preclinical bench-top experiments, data collection, and analysis</li>
+        <li>Prepared and revised laboratory SOPs and technical documentation</li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<!-- CONTACT -->
+<section id="contact">
+  <div class="slbl">Communications</div>
+  <h2 class="stitle">Get In <em>Touch</em></h2>
+  <div class="cw">
+    <div>
+      <p class="cintro" data-editable data-field="contact-intro">Open to research collaborations, graduate opportunities, and interesting engineering challenges &mdash; biomedical ML, molecular dynamics, or power systems. Reach out and let&#39;s build something.</p>
+      <div class="cls">
+        <a href="mailto:kmustans@CougarNet.UH.EDU" class="clink"><span>&#9993;</span> kmustans@cougarnet.uh.edu</a>
+        <a href="tel:+19843900904" class="clink"><span>&#128241;</span> +1 (984) 390-0904</a>
+        <a href="#" class="clink" id="lilink"><span>&#128188;</span> <span id="lilbl">LinkedIn Profile</span></a>
+        <a href="#" class="clink" id="ghlink"><span>&#9000;</span> <span id="ghlbl">GitHub Profile</span></a>
+      </div>
+    </div>
+    <div class="cf">
+      <div><label class="cfl">Name</label><input class="cfi" id="cfn" placeholder="Jane Smith"/></div>
+      <div><label class="cfl">Email</label><input class="cfi" id="cfe" type="email" placeholder="jane@university.edu"/></div>
+      <div><label class="cfl">Message</label><textarea class="cft" id="cfm" placeholder="Tell me about your project or opportunity..."></textarea></div>
+      <button class="bsend" onclick="doMailto()">&#9658; TRANSMIT MESSAGE</button>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <span class="ft">&#169; 2025 <em>Khaldoon Mustansir</em> &mdash; University of Houston</span>
+  <span class="ft">Built with precision &middot; <em>KM_PORTFOLIO v3.0</em></span>
+</footer>
+
+<!-- MODAL -->
+<div id="mbg" onclick="closeMbg(event)">
+  <div class="modal" id="modal">
+    <div class="mi">
+      <div class="mtop">
+        <span class="mbadge" id="mbadge"></span>
+        <button class="mx" onclick="closeModal()">&#10005;</button>
+      </div>
+      <div class="mtitle" id="mtitle"></div>
+      <div class="mtabs">
+        <button class="mtab active" onclick="switchMT('overview',this)">Overview</button>
+        <button class="mtab" onclick="switchMT('code',this)">Python Code</button>
+      </div>
+      <div class="mpane active" id="mp-overview">
+        <ul class="mbuls" id="mbuls"></ul>
+        <div class="mslbl">// Tech Stack</div>
+        <div class="mstk" id="mstk"></div>
+        <div id="m-github-wrap" style="margin-top:20px;display:none">
+          <a id="m-github-link" href="#" target="_blank" class="mgithub">&#9000; View on GitHub</a>
+        </div>
+      </div>
+      <div class="mpane" id="mp-code"><div id="mcodearea"></div></div>
+    </div>
+  </div>
+</div>
+
+<!-- LOGIN -->
+<div id="lbg" onclick="closeLbg(event)">
+  <div class="lbox">
+    <div class="licon">&#128272;</div>
+    <div class="ltitle">ADMIN ACCESS</div>
+    <div class="lsub">Secure Authentication Required</div>
+    <input class="linput" id="lpin" type="password" placeholder="&#8226;&#8226;&#8226;&#8226;&#8226;&#8226;&#8226;&#8226;" onkeydown="if(event.key==='Enter')doLogin()"/>
+    <button class="lbtn" onclick="doLogin()">&#9658; AUTHENTICATE</button>
+    <div class="lerr" id="lerr">&#9888; Incorrect access code</div>
+    <button class="lcancel" onclick="closeLogin()">Cancel</button>
+  </div>
+</div>
+
+<!-- ADMIN DRAWER -->
+<div id="admbg" onclick="closeAdmBg(event)">
+  <div class="admdw">
+    <div class="admhd">
+      <div class="admtitle">&#9881; ADMIN PANEL</div>
+      <button class="admx" onclick="closeAdmin()">&#10005;</button>
+    </div>
+    <div class="atabs">
+      <button class="atab active" onclick="switchAT('content',this)">Content</button>
+      <button class="atab" onclick="switchAT('project',this)">Add Project</button>
+      <button class="atab" onclick="switchAT('editproj',this)">Edit Projects</button>
+      <button class="atab" onclick="switchAT('links',this)">Links</button>
+      <button class="atab" onclick="switchAT('security',this)">Security</button>
+    </div>
+    <div class="admbody">
+      <div class="apane active" id="ap-content">
+        <div class="af"><label class="afl">Hero Role Line</label><input class="afi" id="a-role"/></div>
+        <div class="af"><label class="afl">Hero Bio</label><textarea class="afta" id="a-bio"></textarea></div>
+        <div class="af"><label class="afl">About Para 1</label><textarea class="afta" id="a-ab1"></textarea></div>
+        <div class="af"><label class="afl">About Para 2</label><textarea class="afta" id="a-ab2"></textarea></div>
+        <div class="af"><label class="afl">About Para 3</label><textarea class="afta" id="a-ab3"></textarea></div>
+        <div class="af"><label class="afl">Contact Intro</label><textarea class="afta" id="a-ci"></textarea></div>
+        <div class="abtns"><button class="abtn" onclick="applyContent()">Save</button><button class="abg" onclick="closeAdmin()">Cancel</button></div>
+      </div>
+      <div class="apane" id="ap-project">
+        <p class="afnote">Add a new project. Python code shows in the modal Code tab when users click the card.</p>
+        <div class="af"><label class="afl">Title</label><input class="afi" id="ap-title"/></div>
+        <div class="af"><label class="afl">Badge Label</label><input class="afi" id="ap-cat" placeholder="ML &middot; Biomedical"/></div>
+        <div class="af"><label class="afl">Filter Tag (ml / bio / power / comp)</label><input class="afi" id="ap-filter" placeholder="ml bio"/></div>
+        <div class="af"><label class="afl">Emoji</label><input class="afi" id="ap-emoji" placeholder="&#128300;" style="max-width:70px"/></div>
+        <div class="af"><label class="afl">Short Description</label><textarea class="afta" id="ap-desc"></textarea></div>
+        <div class="af"><label class="afl">Bullets (one per line)</label><textarea class="afta" id="ap-bullets"></textarea></div>
+        <div class="af"><label class="afl">Stack (comma separated)</label><input class="afi" id="ap-stack"/></div>
+        <div class="af"><label class="afl">GitHub Repo URL</label><input class="afi" id="ap-github" placeholder="https://github.com/username/repo"/></div>
+        <div class="af"><label class="afl">Script Filename</label><input class="afi" id="ap-sname" placeholder="analysis.py"/></div>
+        <div class="af"><label class="afl">Python Code (paste here)</label><textarea class="afta afcode" id="ap-code" placeholder="# Paste your Python script here..."></textarea></div>
+        <div class="af crow"><div><label class="afl">Accent Color</label><input type="color" id="ap-color" value="#00f5ff"/></div></div>
+        <div class="abtns"><button class="abtn" onclick="addProject()">Add Project</button><button class="abg" onclick="closeAdmin()">Cancel</button></div>
+      </div>
+      <div class="apane" id="ap-editproj">
+        <p class="afnote">Select a project to edit its details, GitHub link, description, or Python code.</p>
+        <div class="af"><label class="afl">Select Project</label><select class="afi" id="ep-select" onchange="loadEditProject(this.value)" style="font-family:Share Tech Mono,monospace;font-size:.7rem"></select></div>
+        <div id="ep-fields" style="display:none">
+          <div class="af"><label class="afl">Title</label><input class="afi" id="ep-title"/></div>
+          <div class="af"><label class="afl">Short Description</label><textarea class="afta" id="ep-desc"></textarea></div>
+          <div class="af"><label class="afl">GitHub Repo URL</label><input class="afi" id="ep-github" placeholder="https://github.com/username/repo"/></div>
+          <div class="af"><label class="afl">Bullets (one per line)</label><textarea class="afta" id="ep-bullets"></textarea></div>
+          <div class="af"><label class="afl">Stack (comma separated)</label><input class="afi" id="ep-stack"/></div>
+          <div class="af"><label class="afl">Script Filename</label><input class="afi" id="ep-sname"/></div>
+          <div class="af"><label class="afl">Python Code</label><textarea class="afta afcode" id="ep-code"></textarea></div>
+          <div class="abtns"><button class="abtn" onclick="saveEditProject()">Save Changes</button><button class="abg" onclick="closeAdmin()">Cancel</button></div>
+        </div>
+      </div>
+      <div class="apane" id="ap-links">
+        <div class="af"><label class="afl">LinkedIn URL</label><input class="afi" id="a-li" placeholder="https://linkedin.com/in/..."/></div>
+        <div class="af"><label class="afl">GitHub URL</label><input class="afi" id="a-gh" placeholder="https://github.com/..."/></div>
+        <div class="abtns"><button class="abtn" onclick="saveLinks()">Save Links</button><button class="abg" onclick="closeAdmin()">Cancel</button></div>
+      </div>
+      <div class="apane" id="ap-security">
+        <div class="af"><label class="afl">Current Password</label><input class="afi" id="cpw" type="password"/></div>
+        <div class="af"><label class="afl">New Password</label><input class="afi" id="npw" type="password"/></div>
+        <div class="af"><label class="afl">Confirm New Password</label><input class="afi" id="cpw2" type="password"/></div>
+        <div class="pwmsg" id="pwmsg"></div>
+        <div class="abtns"><button class="abtn" onclick="changePw()">Update</button><button class="abg" onclick="closeAdmin()">Cancel</button></div>
+        <hr style="border:none;border-top:1px solid var(--border);margin:22px 0"/>
+        <button class="abg" style="border-color:var(--rose);color:var(--rose);font-size:.6rem" onclick="if(confirm('Reset all saved data?')){localStorage.clear();location.reload()}">Reset All Data</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script>
+/* ── STARS ── */
+var SE=document.getElementById('stars');
+for(var i=0;i<230;i++){var s=document.createElement('div');s.className='star';var z=Math.random()*2.3+.3;s.style.cssText='width:'+z+'px;height:'+z+'px;left:'+Math.random()*100+'%;top:'+Math.random()*100+'%;--d:'+(2+Math.random()*4)+'s;--dl:'+Math.random()*5+'s;--lo:'+(0.05+Math.random()*.15)+';--hi:'+(0.2+Math.random()*.75);SE.appendChild(s);}
+function shootStar(){var s=document.createElement('div');var w=60+Math.random()*120;s.style.cssText='position:absolute;top:'+Math.random()*60+'%;left:'+Math.random()*80+'%;width:'+w+'px;height:1px;background:linear-gradient(90deg,rgba(255,255,255,.9),transparent);transform:rotate(-'+(16+Math.random()*18)+'deg);pointer-events:none;animation:none;opacity:0;transition:none';SE.appendChild(s);s.animate([{opacity:0,transform:'rotate(-20deg) translateX(-30px)'},{opacity:1,transform:'rotate(-20deg) translateX('+w/2+'px)'},{opacity:0,transform:'rotate(-20deg) translateX('+w+'px)'}],{duration:650,easing:'ease-out'}).onfinish=function(){s.remove()};}
+setInterval(shootStar,2800);
+
+/* ── ASTEROIDS ── */
+var belt=document.getElementById('belt');
+for(var i=0;i<42;i++){var a=document.createElement('div');a.className='ast';var ang=(i/42)*360,r=235+Math.random()*18;var ax=260+Math.cos(ang*Math.PI/180)*r,ay=260+Math.sin(ang*Math.PI/180)*r;var sz=0.8+Math.random()*2.2;a.style.cssText='width:'+sz+'px;height:'+sz+'px;left:'+ax+'px;top:'+ay+'px;opacity:'+(0.25+Math.random()*.5);belt.appendChild(a);}
+
+/* ── CURSOR ── */
+var CD=document.getElementById('cdot'),CR=document.getElementById('cring');
+var mx=0,my=0,rx=0,ry=0;
+document.addEventListener('mousemove',function(e){mx=e.clientX;my=e.clientY;CD.style.left=mx+'px';CD.style.top=my+'px';});
+(function ar(){rx+=(mx-rx)*.11;ry+=(my-ry)*.11;CR.style.left=rx+'px';CR.style.top=ry+'px';requestAnimationFrame(ar);})();
+function addHover(sel){document.querySelectorAll(sel).forEach(function(el){el.addEventListener('mouseenter',function(){CR.style.width='46px';CR.style.height='46px';CR.style.borderColor='rgba(0,245,255,.75)';CR.style.background='rgba(0,245,255,.04)';});el.addEventListener('mouseleave',function(){CR.style.width='36px';CR.style.height='36px';CR.style.borderColor='rgba(0,245,255,.5)';CR.style.background='transparent';});});}
+addHover('a,button,.bp,.bs,.pf');
+
+/* Section-aware cursor */
+var sectionCursors = {
+  'hero':       {color:'#00f5ff', size:'36px'},
+  'about':      {color:'#a855f7', size:'38px'},
+  'skills':     {color:'#00ff88', size:'36px'},
+  'projects':   {color:'#00f5ff', size:'36px'},
+  'experience': {color:'#ffb800', size:'38px'},
+  'contact':    {color:'#ff4d6d', size:'36px'}
+};
+var curSec = 'hero';
+function updateCursorForSection(id){
+  if(curSec===id) return;
+  curSec=id;
+  var cfg=sectionCursors[id]||{color:'#00f5ff',size:'36px'};
+  CD.style.background=cfg.color;
+  CD.style.boxShadow='0 0 12px '+cfg.color+',0 0 24px '+cfg.color+'66';
+  CR.style.borderColor=cfg.color.replace('ff','88');
+  CR.style.width=cfg.size; CR.style.height=cfg.size;
+}
+var secIds=['hero','about','skills','projects','experience','contact'];
+var secEls=secIds.map(function(id){return document.getElementById(id);}).filter(Boolean);
+var ioOpts={threshold:0.3};
+var secIO=new IntersectionObserver(function(entries){
+  entries.forEach(function(e){if(e.isIntersecting)updateCursorForSection(e.target.id);});
+},ioOpts);
+secEls.forEach(function(el){secIO.observe(el);});
+
+/* ── PROJECT DATA ── */
+var PD=[
+  {id:'p1',cat:'ml bio',badge:'ML \u00B7 Biomedical',emoji:'\uD83E\uDE78',color:'#00f5ff',
+   title:'Automated Leukocyte Classification via EfficientNetB3 + SE Attention',
+   desc:'Classified 4 WBC subtypes from 12,500 blood smear images using EfficientNetB3 with Squeeze-and-Excitation channel attention, achieving 92.4% test accuracy.',
+   bullets:['Classified 4 WBC subtypes from 12,500 images with EfficientNetB3 + SE attention','Two-phase transfer learning: 92.4% accuracy, F1: 0.921, ROC-AUC: 0.978','Outperformed VGG19 by 4.3% using 11x fewer parameters; validated with Grad-CAM'],
+   stack:['Python','TensorFlow','EfficientNetB3','SE Attention','Grad-CAM'],
+   sname:'leukocyte_classifier.py',
+   code:'# EfficientNetB3 + SE Attention -- WBC Classifier\n# Khaldoon Mustansir | University of Houston\nimport tensorflow as tf\nfrom tensorflow.keras.applications import EfficientNetB3\nfrom tensorflow.keras.layers import (\n    Dense, GlobalAveragePooling2D, Multiply, Reshape, Dropout)\nfrom tensorflow.keras.models import Model\n\ndef se_block(inputs, ratio=16):\n    ch = inputs.shape[-1]\n    x = GlobalAveragePooling2D()(inputs)\n    x = Reshape((1, 1, ch))(x)\n    x = Dense(ch // ratio, activation="relu")(x)\n    x = Dense(ch, activation="sigmoid")(x)\n    return Multiply()([inputs, x])\n\ndef build_model(num_classes=4, freeze_base=True):\n    base = EfficientNetB3(include_top=False,\n                          weights="imagenet",\n                          input_shape=(224,224,3))\n    base.trainable = not freeze_base\n    x = se_block(base.output)\n    x = GlobalAveragePooling2D()(x)\n    x = Dropout(0.4)(x)\n    x = Dense(256, activation="relu")(x)\n    x = Dropout(0.3)(x)\n    out = Dense(num_classes, activation="softmax")(x)\n    model = Model(base.input, out)\n    model.compile(optimizer=tf.keras.optimizers.Adam(1e-4),\n                  loss="categorical_crossentropy",\n                  metrics=["accuracy"])\n    return model\n\n# Phase 1 -- frozen base\nmodel = build_model(freeze_base=True)\nmodel.fit(train_ds, validation_data=val_ds, epochs=10)\n\n# Phase 2 -- fine-tune top 30 layers\nfor layer in model.layers[-30:]:\n    layer.trainable = True\nmodel.compile(optimizer=tf.keras.optimizers.Adam(1e-5),\n              loss="categorical_crossentropy",\n              metrics=["accuracy"])\nmodel.fit(train_ds, validation_data=val_ds, epochs=20)\n# Result: 92.4% acc | F1: 0.921 | ROC-AUC: 0.978'},
+
+  {id:'p2',cat:'ml bio',badge:'ML \u00B7 Oncology',emoji:'\uD83C\uDF97\uFE0F',color:'#a855f7',
+   title:'Multimodal ML -- 10-Year Breast Cancer Survival Prediction',
+   desc:'Multimodal ML pipeline integrating clinical and genomic features (CNA + mutation) to predict 10-year breast cancer survival, benchmarked across five classifiers.',
+   bullets:['Pipeline integrating clinical and genomic features (CNA + mutation data)','Benchmarked five classifiers: LR, RF, SVM, XGBoost, MLP','Feature importance analysis and survival curve visualization'],
+   stack:['Python','scikit-learn','Pandas','NumPy','Survival Analysis','Genomics'],
+   sname:'survival_prediction.py',
+   code:'# Multimodal Breast Cancer Survival Prediction\n# Khaldoon Mustansir | University of Houston\nimport pandas as pd\nfrom sklearn.ensemble import RandomForestClassifier\nfrom sklearn.linear_model import LogisticRegression\nfrom sklearn.model_selection import StratifiedKFold, cross_val_score\nfrom sklearn.preprocessing import StandardScaler\nfrom sklearn.pipeline import Pipeline\nfrom imblearn.over_sampling import SMOTE\n\nclinical = pd.read_csv("clinical_features.csv")\ncna      = pd.read_csv("cna_features.csv")\nmutation = pd.read_csv("mutation_features.csv")\n\ndf = (clinical.merge(cna, on="patient_id")\n              .merge(mutation, on="patient_id"))\nX = df.drop(columns=["patient_id", "survival_10yr"])\ny = df["survival_10yr"]\n\nX_res, y_res = SMOTE(random_state=42).fit_resample(X, y)\n\nmodels = {\n    "Logistic Regression": LogisticRegression(max_iter=500),\n    "Random Forest":       RandomForestClassifier(200, random_state=42),\n}\ncv = StratifiedKFold(n_splits=5, shuffle=True, random_state=42)\nfor name, clf in models.items():\n    pipe = Pipeline([("sc", StandardScaler()), ("clf", clf)])\n    auc = cross_val_score(pipe, X_res, y_res, cv=cv, scoring="roc_auc")\n    print(f"{name}: AUC = {auc.mean():.4f} +/- {auc.std():.4f}")'},
+
+  {id:'p3',cat:'ml',badge:'ML \u00B7 Cardiovascular',emoji:'\u2764\uFE0F',color:'#ff4d6d',
+   title:'Cardiovascular Disease Risk Prediction -- CDC BRFSS',
+   desc:'Complete ML pipeline on the 2021 CDC BRFSS dataset (300K+ samples) predicting cardiovascular disease from 19 key health indicators with SMOTE oversampling.',
+   bullets:['Pipeline on 300K+ CDC BRFSS samples with 19 key predictors','Addressed severe class imbalance (~8% positive) with SMOTE + class weighting','Benchmarked LR, Decision Tree, Random Forest, KNN, Naive Bayes'],
+   stack:['Python','scikit-learn','SMOTE','Pandas','BRFSS'],
+   sname:'cvd_risk.py',
+   code:'# Cardiovascular Disease Risk Prediction\n# CDC BRFSS 2021 | Khaldoon Mustansir\nimport pandas as pd\nfrom sklearn.model_selection import train_test_split\nfrom sklearn.ensemble import RandomForestClassifier\nfrom sklearn.linear_model import LogisticRegression\nfrom sklearn.metrics import roc_auc_score, f1_score\nfrom sklearn.preprocessing import StandardScaler\nfrom imblearn.over_sampling import SMOTE\n\nKEY = ["BMI","Smoking","AlcoholDrinking","Stroke","PhysicalHealth",\n       "MentalHealth","DiffWalking","Sex","AgeCategory","Race",\n       "Diabetic","PhysicalActivity","GenHealth","SleepTime",\n       "Asthma","KidneyDisease","SkinCancer","HeartDisease_prev"]\n\ndf = pd.read_csv("heart_2021.csv").dropna()\nX  = pd.get_dummies(df[KEY], drop_first=True)\ny  = (df["HeartDisease"]=="Yes").astype(int)\n\nX_tr,X_te,y_tr,y_te = train_test_split(X,y,test_size=.2,stratify=y,random_state=42)\nX_tr_r, y_tr_r = SMOTE(random_state=42).fit_resample(X_tr, y_tr)\nsc = StandardScaler()\nXtr = sc.fit_transform(X_tr_r); Xte = sc.transform(X_te)\n\nfor name, clf in [("LR", LogisticRegression(max_iter=500)),\n                  ("RF", RandomForestClassifier(200,n_jobs=-1))]:\n    clf.fit(Xtr, y_tr_r)\n    print(name, "AUC=", round(roc_auc_score(y_te,clf.predict_proba(Xte)[:,1]),4))'},
+
+  {id:'p4',cat:'comp bio',badge:'Computational \u00B7 Bio',emoji:'\u269B\uFE0F',color:'#00ff88',
+   title:'Molecular Dynamics Simulations -- Peptide Self-Assembly',
+   desc:'Multi-peptide MD systems investigating self-assembly behavior using NAMD and CHARMM-GUI, analyzing beta-sheet architectures at physiological ionic conditions.',
+   bullets:['Multi-peptide MD systems with PyMOL, CHARMM-GUI, VMD -- eliminated orientation bias','Physiological conditions (0.15M NaCl), ACE/CT2 capping; production MD to 2-5 ms','Analyzed planar, parallel/antiparallel beta-sheet and multilayer assembly architectures'],
+   stack:['NAMD','CHARMM-GUI','VMD','PyMOL','HPC','CHARMM FF'],
+   sname:'md_analysis.py',
+   code:'# MD Trajectory Analysis -- Peptide Self-Assembly\n# Khaldoon Mustansir | University of Houston\nimport MDAnalysis as mda\nimport numpy as np\nimport matplotlib.pyplot as plt\nfrom MDAnalysis.analysis import rms\n\nu = mda.Universe("system.psf", "production.dcd")\npeptides = u.select_atoms("protein")\n\nR = rms.RMSD(peptides, select="backbone")\nR.run()\nrmsd_data = R.results.rmsd.T\n\nrg = [peptides.radius_of_gyration() for ts in u.trajectory]\nrg = np.array(rg)\n\nfig, (ax1,ax2) = plt.subplots(1,2,figsize=(12,4))\nax1.plot(rmsd_data[1]/1000, rmsd_data[2], lw=1.5, color="#00ff88")\nax1.set(xlabel="Time (ns)", ylabel="RMSD (A)", title="Backbone RMSD")\nax2.plot(rg, lw=1.5, color="#a855f7")\nax2.set(xlabel="Frame", ylabel="Rg (A)", title="Radius of Gyration")\nplt.tight_layout()\nplt.savefig("md_analysis.pdf", dpi=300)'},
+
+  {id:'p5',cat:'comp bio',badge:'Comp \u00B7 Drug Discovery',emoji:'\uD83D\uDC8A',color:'#a855f7',
+   title:'Computational Docking & Structural Prediction',
+   desc:'Workflows for molecular docking, inhibitor design, and protein structure prediction using AlphaFold2, RFdiffusion, and Rosetta to study ligand-protein interactions.',
+   bullets:['Structure prediction with AlphaFold2, Boltz, RFdiffusion','Inhibitor evaluation using docking scores, interface energies, RMSD','Contributed to synthesis planning and experimental binding validation'],
+   stack:['AlphaFold2','RFdiffusion','Boltz','Rosetta','PyMOL','Python'],
+   sname:'docking_pipeline.py',
+   code:'# Computational Docking Pipeline\n# Khaldoon Mustansir | University of Houston\nimport subprocess, json\nimport pandas as pd\n\ndef run_alphafold(sequence, output_dir):\n    with open(f"{output_dir}/input.fasta","w") as f:\n        f.write(f">target\\n{sequence}\\n")\n    subprocess.run([\n        "python", "/alphafold/run_alphafold.py",\n        f"--fasta_paths={output_dir}/input.fasta",\n        f"--output_dir={output_dir}",\n        "--max_template_date=2023-01-01",\n        "--model_preset=monomer"\n    ], check=True)\n\ndef parse_rosetta_scores(score_file):\n    df = pd.read_csv(score_file, sep=r"\\s+", skiprows=1)\n    cols = ["total_score","dG_separated","I_sc","dSASA_int","rmsd","description"]\n    return df[[c for c in cols if c in df.columns]]\n\ndef cluster_poses(pdb_list, threshold=2.0):\n    import pyrosetta; pyrosetta.init()\n    from pyrosetta.rosetta.core.scoring import CA_rmsd\n    poses = [pyrosetta.pose_from_pdb(p) for p in pdb_list]\n    clusters = {}; assigned = set(); cid = 0\n    for i, p in enumerate(poses):\n        if i in assigned: continue\n        clusters[cid] = [pdb_list[i]]; assigned.add(i)\n        for j, q in enumerate(poses[i+1:], i+1):\n            if j not in assigned and CA_rmsd(p,q) < threshold:\n                clusters[cid].append(pdb_list[j]); assigned.add(j)\n        cid += 1\n    return clusters'},
+
+  {id:'p6',cat:'bio',badge:'Biomedical \u00B7 EEG',emoji:'\uD83E\uDDE0',color:'#ff4d6d',
+   title:'EEG Confusion Detection: HDC vs. Deep Learning (BMI)',
+   desc:'Comparative study of Hyperdimensional Computing and deep learning for EEG-based cognitive confusion detection in a brain-machine interface context.',
+   bullets:['Comparative HDC vs. deep learning for EEG confusion detection','HDC encoding with hypervector binding and bundling for classification','Evaluated CNN-LSTM and transformer architectures against HDC benchmarks'],
+   stack:['Python','EEG','HDC','PyTorch','MNE','BMI'],
+   sname:'eeg_confusion.py',
+   code:'# EEG Confusion Detection -- HDC vs Deep Learning\n# Khaldoon Mustansir | University of Houston\nimport numpy as np, mne\n\ndef preprocess_eeg(path, lo=1.0, hi=40.0):\n    raw = mne.io.read_raw_edf(path, preload=True)\n    raw.filter(lo, hi, fir_design="firwin")\n    raw.notch_filter(50.0)\n    return mne.make_fixed_length_epochs(raw,2.0,overlap=1.0).get_data()\n\nclass HDEncoder:\n    def __init__(self, D=10000, L=100):\n        self.D, self.L = D, L\n        self.hvs = (np.random.rand(L,D)>.5).astype(np.int8)*2-1\n    def enc_ch(self, sig):\n        bins = np.digitize(sig, np.linspace(sig.min(),sig.max(),self.L-1))\n        return np.sign(self.hvs[bins].sum(0))\n    def enc_epoch(self, epoch):\n        return np.sign(np.stack([self.enc_ch(epoch[c])\n                                 for c in range(epoch.shape[0])]).sum(0))\n\nclass HDClassifier:\n    def __init__(self, enc): self.enc=enc; self.protos={}\n    def fit(self, X, y):\n        for lbl in np.unique(y):\n            vecs = np.stack([self.enc.enc_epoch(x) for x in X[y==lbl]])\n            self.protos[lbl] = np.sign(vecs.sum(0))\n    def predict(self, X):\n        E = np.stack([self.enc.enc_epoch(x) for x in X])\n        return [max(self.protos, key=lambda l: E[i]@self.protos[l])\n                for i in range(len(E))]'},
+
+  {id:'p7',cat:'power',badge:'Power \u00B7 NLP/AI',emoji:'\u26A1',color:'#ffb800',
+   title:'LLM-Based Power System Fault Log Analyzer',
+   desc:'NLP pipeline using the Claude LLM API to parse relay trip logs, SCADA records, and protection reports -- identifying fault patterns and recommending relay adjustments.',
+   bullets:['Claude API NLP pipeline to parse relay trip logs and SCADA records','Structured JSON extraction from free-text logs with relay setting recommendations','Reduced manual post-fault analysis time by ~70%; ETAP/SCADA integration ready'],
+   stack:['Python','Claude API','NLP','JSON Extraction','ETAP','SCADA'],
+   sname:'fault_analyzer.py',
+   code:'# LLM Power System Fault Log Analyzer\n# Khaldoon Mustansir | University of Houston\nimport anthropic, json\nfrom dataclasses import dataclass\n\nclient = anthropic.Anthropic()\n\nPROMPT = (\n    "You are a protection relay expert. "\n    "Analyze this relay trip log and return ONLY valid JSON: "\n    \'{"fault_type":"","faulted_element":"","relay_operated":[],\'\n    \'"miscoordination":false,"root_cause":"",\'\n    \'"recommended_changes":[{"relay":"","parameter":"",\'\n    \'"current":"","suggested":"","reason":""}]}\'\n    " Log: {log}"\n)\n\n@dataclass\nclass FaultAnalysis:\n    fault_type: str\n    faulted_element: str\n    relay_operated: list\n    miscoordination: bool\n    root_cause: str\n    recommended_changes: list\n\ndef analyze(log_text):\n    r = client.messages.create(\n        model="claude-opus-4-6", max_tokens=1500,\n        messages=[{"role":"user",\n                   "content":PROMPT.format(log=log_text)}])\n    return FaultAnalysis(**json.loads(r.content[0].text))\n\ndef process_folder(folder):\n    from pathlib import Path\n    for f in Path(folder).glob("*.txt"):\n        res = analyze(f.read_text())\n        print(f"[{f.name}] {res.fault_type} miscoord={res.miscoordination}")'},
+
+  {id:'p8',cat:'power',badge:'Power \u00B7 Renewable',emoji:'\u2600\uFE0F',color:'#ffb800',
+   title:'Solar PV Simulation with MPPT',
+   desc:'Solar PV system in MATLAB/Simulink with MPPT via Perturb & Observe algorithm and a Boost DC-DC converter, validated against theoretical I-V and P-V curves.',
+   bullets:['Solar PV model in MATLAB/Simulink with Perturb & Observe MPPT','Boost DC-DC converter design; efficiency and transient analysis','Validated against theoretical PV I-V and P-V characteristic curves'],
+   stack:['MATLAB','Simulink','MPPT','DC-DC Converter','PV Systems'],
+   sname:null,code:null},
+
+  {id:'p9',cat:'bio',badge:'Biomedical \u00B7 Wearable',emoji:'\uD83D\uDCE1',color:'#a855f7',
+   title:'Wearable Headset for Real-Time Epileptic Seizure Monitoring',
+   desc:'Wearable EEG headset with embedded detection algorithms and real-time alerting to caregivers via an Android application.',
+   bullets:['Wearable EEG headset with embedded real-time seizure detection','Android caregiver alerting app with customizable thresholds','Continuous monitoring with low-latency signal acquisition'],
+   stack:['EEG Hardware','Embedded C','Android','Signal Processing','BLE'],
+   sname:null,code:null},
+
+  {id:'p10',cat:'power',badge:'Power \u00B7 GIS',emoji:'\uD83D\uDDFA\uFE0F',color:'#ffb800',
+   title:'Decision-Support GUI for Power Generation Planning',
+   desc:'Intelligent GUI integrating geospatial, climatological, and energy-demand data to recommend optimal generation technology for specific regional conditions.',
+   bullets:['GUI integrating GIS, climate data, and energy-demand modeling','Recommends solar, wind, hydro, or thermal for regional conditions','Validated against real-world energy planning datasets'],
+   stack:['Python','Tkinter','GIS','Energy Modeling'],sname:null,code:null},
+
+  {id:'p11',cat:'power ml',badge:'Power \u00B7 ML/AI',emoji:'\u26A1',color:'#ffb800',
+   title:'Electrical Fault Detection in Three-Phase Power Transmission Systems',
+   desc:'End-to-end ML pipeline for binary fault detection on 12,000-sample MATLAB-simulated three-phase power data, combining domain-driven feature engineering with gradient boosting, stacking ensembles, a 1D CNN, and SHAP interpretability.',
+   bullets:['Engineered 15 domain-informed features from symmetrical-component theory (zero-sequence current/voltage, phase imbalance indices, instantaneous power) -- expanded feature space from 6 to 21 dimensions','Built RobustScaler + Yeo-Johnson preprocessing pipeline; 5-fold StratifiedKFold CV for reliable evaluation','Trained XGBoost, LightGBM, Stacking Ensemble (RF + XGBoost + LightGBM + LR meta-learner); achieved ROC-AUC 1.000 and 99.8% accuracy','Designed 1D CNN (Conv1D + BatchNorm + GAP + Dense) to learn cross-channel fault patterns; EarlyStopping & ReduceLROnPlateau callbacks','Applied SHAP TreeExplainer -- beeswarm and waterfall plots confirmed engineered features (imbalance indices, I0) as top discriminative predictors'],
+   stack:['Python','XGBoost','LightGBM','TensorFlow/Keras','SHAP','scikit-learn','1D CNN'],
+   sname:'fault_detection.py',
+   code:'# Electrical Fault Detection -- 3-Phase Power Transmission\n# Khaldoon Mustansir | University of Houston\nimport pandas as pd\nimport numpy as np\nfrom sklearn.pipeline import Pipeline\nfrom sklearn.preprocessing import RobustScaler, PowerTransformer\nfrom sklearn.model_selection import StratifiedKFold, cross_val_score\nfrom sklearn.ensemble import StackingClassifier, RandomForestClassifier\nfrom sklearn.linear_model import LogisticRegression\nfrom xgboost import XGBClassifier\nfrom lightgbm import LGBMClassifier\nimport shap, tensorflow as tf\n\n# ── Feature Engineering (symmetrical-component theory) ──\ndef engineer_features(df):\n    # Instantaneous power per phase\n    df["Pa"] = df["Va"] * df["Ia"]\n    df["Pb"] = df["Vb"] * df["Ib"]\n    df["Pc"] = df["Vc"] * df["Ic"]\n    df["P_total"] = df["Pa"] + df["Pb"] + df["Pc"]\n    # Zero-sequence quantities (ground fault indicator)\n    df["I0"] = (df["Ia"] + df["Ib"] + df["Ic"]) / 3\n    df["V0"] = (df["Va"] + df["Vb"] + df["Vc"]) / 3\n    # Absolute magnitudes\n    for col in ["Ia","Ib","Ic","Va","Vb","Vc"]:\n        df[f"|{col}|"] = df[col].abs()\n    # Apparent power per phase\n    df["Sa"] = df["|Va|"] * df["|Ia|"]\n    df["Sb"] = df["|Vb|"] * df["|Ib|"]\n    df["Sc"] = df["|Vc|"] * df["|Ic|"]\n    # Phase imbalance indices (IEC 61000-4 inspired)\n    I_cols = ["|Ia|","|Ib|","|Ic|"]\n    V_cols = ["|Va|","|Vb|","|Vc|"]\n    df["I_imbalance"] = (df[I_cols].max(1)-df[I_cols].min(1))/(df[I_cols].mean(1)+1e-9)\n    df["V_imbalance"] = (df[V_cols].max(1)-df[V_cols].min(1))/(df[V_cols].mean(1)+1e-9)\n    return df  # 6 -> 21 features\n\n# ── Preprocessing Pipeline ──\npipe = Pipeline([\n    ("robust",  RobustScaler()),           # insensitive to fault-current outliers\n    ("yeojohn", PowerTransformer(method="yeo-johnson"))  # reduces residual skew\n])\n\n# ── Stacking Ensemble ──\nbase_learners = [\n    ("rf",   RandomForestClassifier(n_estimators=300, random_state=42)),\n    ("xgb",  XGBClassifier(n_estimators=300, lr=0.05, use_label_encoder=False)),\n    ("lgbm", LGBMClassifier(n_estimators=300, learning_rate=0.05))\n]\nstack = StackingClassifier(\n    estimators=base_learners,\n    final_estimator=LogisticRegression(C=1.0),\n    cv=5, stack_method="predict_proba"\n)\ncv = StratifiedKFold(n_splits=5, shuffle=True, random_state=42)\n# Result: ROC-AUC 1.000 | Accuracy 99.8%\n\n# ── SHAP Interpretability ──\nexplainer = shap.TreeExplainer(xgb_model)\nshap_vals = explainer.shap_values(X_test)\nshap.summary_plot(shap_vals, X_test)  # beeswarm: imbalance indices rank top'},
+
+  {id:'p12',cat:'bio ml',badge:'BMI \u00B7 Biomedical',emoji:'\uD83E\uDDE0',color:'#ff4d6d',
+   title:'Multi-Model EEG Confusion Detection: HDC vs. Deep Learning',
+   desc:'BMI course project comparing Hyperdimensional Computing (HDC, D=10,000) against a 1D CNN for detecting cognitive confusion from single-channel EEG (Fp1) on 12,811 samples from 10 subjects watching educational videos.',
+   bullets:['Built HDC classifier (MAP framework, D=10,000 hypervectors) and CNN (Conv2D + Dense, window=5) on the CMU Confused Student EEG dataset','CNN achieved 69.71% accuracy (+2.51% vs SVM benchmark 67.2%); HDC achieved 58.84% -- architecture mismatch explained by continuous vs spike-train signal domain','Statistical analysis: Theta most discriminative band (Cohen\u2019s d=0.332, p<0.001); 23 confusion-onset PETH transitions analyzed across 10 subjects','Preprocessing: log1p transform + MinMax normalization; sliding window feature extraction for CNN temporal context','PCA: 82.33% variance in 2D but high class overlap -- justified use of non-linear HDC and CNN decoders'],
+   stack:['Python','MNE','scikit-learn','TensorFlow','HDC','EEG','NumPy','PCA'],
+   sname:'eeg_confusion_bmi.py',
+   code:'# EEG Confusion Detection -- HDC vs CNN (BMI Final Project)\n# Khaldoon Mustansir | University of Houston | Instructor: Dr. Joe Francis\nimport numpy as np, pandas as pd\nfrom sklearn.preprocessing import MinMaxScaler\nfrom sklearn.model_selection import train_test_split\nfrom sklearn.metrics import accuracy_score\nimport tensorflow as tf\n\n# ── Preprocessing ──────────────────────────────────────\ndf = pd.read_csv("EEG_data.csv")\nFEATURES = ["Delta","Theta","Alpha1","Alpha2","Beta1","Beta2","Gamma1","Gamma2","Attention","Mediation"]\nX = np.log1p(df[FEATURES].values)   # log1p: stabilises 1/f EEG distribution\nX = MinMaxScaler().fit_transform(X)  # scale to [0,1] for HDC level quantisation\ny = df["user-definedlabeln"].values\n\n# ── Hyperdimensional Computing Classifier ──────────────\nclass HDCClassifier:\n    def __init__(self, D=10000, L=100):\n        self.D, self.L = D, L\n        # Random binary level hypervectors\n        self.lvl_hvs = (np.random.rand(L, D) > .5).astype(np.int8) * 2 - 1\n    def _encode(self, x):\n        bins = np.clip((x * (self.L-1)).astype(int), 0, self.L-1)\n        # MAP: XOR-bind feature position HVs with level HVs, then bundle\n        return np.sign(np.sum(self.lvl_hvs[bins], axis=0))\n    def fit(self, X, y):\n        self.protos = {}\n        for lbl in np.unique(y):\n            hvs = np.stack([self._encode(x) for x in X[y==lbl]])\n            self.protos[lbl] = np.sign(hvs.sum(0))\n    def predict(self, X):\n        enc = np.stack([self._encode(x) for x in X])\n        return [max(self.protos, key=lambda l: enc[i]@self.protos[l])\n                for i in range(len(enc))]\n# HDC accuracy: 58.84%\n\n# ── 1D CNN Classifier ──────────────────────────────────\nWIN = 5  # 2.5-second temporal window\nXw = np.array([X[i:i+WIN] for i in range(len(X)-WIN)])\nyw = y[WIN:]\nX_tr,X_te,y_tr,y_te = train_test_split(Xw,yw,test_size=.2,stratify=yw,random_state=42)\n\nmodel = tf.keras.Sequential([\n    tf.keras.layers.Input(shape=(WIN, 10)),\n    tf.keras.layers.Conv1D(32, 3, activation="relu", padding="same"),\n    tf.keras.layers.MaxPooling1D(2),\n    tf.keras.layers.Conv1D(64, 3, activation="relu", padding="same"),\n    tf.keras.layers.GlobalAveragePooling1D(),\n    tf.keras.layers.Dense(32, activation="relu"),\n    tf.keras.layers.Dropout(0.3),\n    tf.keras.layers.Dense(1, activation="sigmoid")\n])\nmodel.compile(optimizer="adam", loss="binary_crossentropy", metrics=["accuracy"])\nmodel.fit(X_tr, y_tr, epochs=20, batch_size=64, validation_split=0.1, verbose=0)\n# CNN accuracy: 69.71% (+2.51% vs SVM benchmark 67.2%)'}
+];
+
+var allP=[].concat(PD);
+
+function esc(s){return s.replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;');}
+function shl(c){
+  return c
+    .replace(/(#[^\n\r]*)/g,'<span class="cm">$1</span>')
+    .replace(/\b(import|from|as|def|class|return|if|else|elif|for|in|while|not|and|or|True|False|None|with|try|except|raise|pass|lambda|yield|global|break|continue|assert|async|await)\b/g,'<span class="ky">$1</span>')
+    .replace(/(\bdef\s+)([a-zA-Z_]\w*)/g,'$1<span class="fn">$2</span>')
+    .replace(/\b(\d+(?:\.\d+)?)\b/g,'<span class="nm">$1</span>');
+}
+
+function renderP(filter){
+  filter=filter||'all';
+  var g=document.getElementById('pgrid');g.innerHTML='';
+  var show=filter==='all'?allP:allP.filter(function(p){return p.cat.split(' ').indexOf(filter)>=0;});
+  show.forEach(function(p,i){
+    var c=document.createElement('div');c.className='pc fu';
+    c.style.cssText='--cc:'+p.color+';animation-delay:'+(i*.07)+'s';
+    c.innerHTML='<div class="ptop"><span class="pbadge" style="border-color:'+p.color+';color:'+p.color+'">'+p.badge+'</span><span class="pemoji">'+p.emoji+'</span></div>'
+      +'<div class="ptitle">'+p.title+'</div>'
+      +'<div class="pdesc">'+p.desc+'</div>'
+      +'<div class="pstack">'+p.stack.map(function(t){return '<span class="ptag">'+t+'</span>';}).join('')+'</div>'
+      +'<div class="pact" style="color:'+p.color+'">View Details &#8594;</div>';
+    c.addEventListener('click',function(){openModal(p);});
+    c.addEventListener('mouseenter',function(){CR.style.borderColor=p.color;});
+    c.addEventListener('mouseleave',function(){CR.style.borderColor='rgba(0,245,255,.5)';});
+    g.appendChild(c);
+  });
+}
+function filterP(cat,btn){
+  document.querySelectorAll('.pf').forEach(function(b){b.classList.remove('active');});
+  btn.classList.add('active');renderP(cat);
+}
+renderP('all');
+
+/* MODAL */
+function openModal(p){
+  var m=document.getElementById('modal');
+  m.style.setProperty('--mc',p.color);
+  var mb=document.getElementById('mbadge');
+  mb.textContent=p.badge;
+  mb.style.cssText='border:1px solid '+p.color+';color:'+p.color+';font-family:Share Tech Mono,monospace;font-size:.6rem;letter-spacing:.08em;text-transform:uppercase;padding:3px 11px;background:transparent';
+  document.getElementById('mtitle').textContent=p.title;
+  document.getElementById('mbuls').innerHTML=p.bullets.map(function(b){return '<li>'+b+'</li>';}).join('');
+  document.getElementById('mstk').innerHTML=p.stack.map(function(t){return '<span class="mtag" style="border-color:'+p.color+';color:'+p.color+'">'+t+'</span>';}).join('');
+  var ca=document.getElementById('mcodearea');
+  if(p.code){
+    ca.innerHTML='<div class="cblk"><div class="chd"><span class="cfn">'+(p.sname||'script.py')+'</span><div class="cdots"><div class="cdot" style="background:#ef4444"></div><div class="cdot" style="background:#f59e0b"></div><div class="cdot" style="background:#22c55e"></div></div></div><div class="cbody">'+shl(esc(p.code))+'</div></div>';
+  } else {
+    ca.innerHTML='<div class="nocode">No script attached yet.<span>Use Admin &rarr; Add Project to attach code.</span></div>';
+  }
+  document.querySelectorAll('.mtab').forEach(function(t){t.classList.remove('active');if(t.getAttribute('onclick')&&t.getAttribute('onclick').indexOf('overview')>=0)t.classList.add('active');});
+  document.querySelectorAll('.mpane').forEach(function(p){p.classList.remove('active');});
+  document.getElementById('mp-overview').classList.add('active');
+  var ghwrap=document.getElementById('m-github-wrap'),ghlink=document.getElementById('m-github-link');
+  if(p.github){ghwrap.style.display='block';ghlink.href=p.github;}else{ghwrap.style.display='none';}
+  document.getElementById('mbg').classList.add('open');
+  document.body.style.overflow='hidden';
+}
+function closeModal(){document.getElementById('mbg').classList.remove('open');document.body.style.overflow='';}
+function closeMbg(e){if(e.target===document.getElementById('mbg'))closeModal();}
+function switchMT(n,btn){
+  document.querySelectorAll('.mtab').forEach(function(b){b.classList.remove('active');});
+  document.querySelectorAll('.mpane').forEach(function(p){p.classList.remove('active');});
+  btn.classList.add('active');
+  document.getElementById('mp-'+n).classList.add('active');
+}
+
+/* AUTH */
+var PK='km_pw';
+function getPW(){return localStorage.getItem(PK)||'KM@UH2025!';}
+function openLogin(){document.getElementById('lbg').classList.add('open');document.getElementById('lpin').value='';document.getElementById('lerr').style.display='none';setTimeout(function(){document.getElementById('lpin').focus();},80);}
+function closeLogin(){document.getElementById('lbg').classList.remove('open');}
+function closeLbg(e){if(e.target===document.getElementById('lbg'))closeLogin();}
+function doLogin(){if(document.getElementById('lpin').value===getPW()){closeLogin();openAdmin();}else{document.getElementById('lerr').style.display='block';document.getElementById('lpin').value='';}}
+
+/* ADMIN */
+function openAdmin(){loadAdmFields();document.getElementById('admbg').classList.add('open');document.getElementById('abtn').classList.add('on');document.body.classList.add('amode');}
+function closeAdmin(){document.getElementById('admbg').classList.remove('open');document.getElementById('abtn').classList.remove('on');document.body.classList.remove('amode');}
+function closeAdmBg(e){if(e.target===document.getElementById('admbg'))closeAdmin();}
+function switchAT(n,btn){
+  document.querySelectorAll('.atab').forEach(function(b){b.classList.remove('active');});
+  document.querySelectorAll('.apane').forEach(function(p){p.classList.remove('active');});
+  btn.classList.add('active');document.getElementById('ap-'+n).classList.add('active');
+}
+function loadAdmFields(){
+  var fm={'a-role':'hero-role','a-bio':'hero-bio','a-ab1':'about1','a-ab2':'about2','a-ab3':'about3','a-ci':'contact-intro'};
+  for(var id in fm){var el=document.querySelector('[data-field="'+fm[id]+'"]');var inp=document.getElementById(id);if(el&&inp)inp.value=el.innerText.trim();}
+  try{var lnk=JSON.parse(localStorage.getItem('km_links')||'{}');if(lnk.li)document.getElementById('a-li').value=lnk.li;if(lnk.gh)document.getElementById('a-gh').value=lnk.gh;}catch(e){}
+}
+function applyContent(){
+  var fm={'a-role':'hero-role','a-bio':'hero-bio','a-ab1':'about1','a-ab2':'about2','a-ab3':'about3','a-ci':'contact-intro'};
+  for(var id in fm){var el=document.querySelector('[data-field="'+fm[id]+'"]');var inp=document.getElementById(id);if(el&&inp&&inp.value.trim())el.innerText=inp.value.trim();}
+  saveContent();closeAdmin();toast('Content saved \u2713');
+}
+function saveLinks(){
+  var li=document.getElementById('a-li').value.trim(),gh=document.getElementById('a-gh').value.trim();
+  localStorage.setItem('km_links',JSON.stringify({li:li,gh:gh}));
+  if(li){document.getElementById('lilink').href=li;document.getElementById('lilbl').textContent='linkedin \u2192 '+li.replace('https://linkedin.com/in/','');}
+  if(gh){document.getElementById('ghlink').href=gh;document.getElementById('ghlbl').textContent='github \u2192 '+gh.replace('https://github.com/','');}
+  closeAdmin();toast('Links saved \u2713');
+}
+function addProject(){
+  var title=document.getElementById('ap-title').value.trim();
+  if(!title){toast('\u26A0 Enter a title');return;}
+  var np={id:'c-'+Date.now(),
+    cat:document.getElementById('ap-filter').value.trim()||'ml',
+    badge:document.getElementById('ap-cat').value.trim()||'Project',
+    emoji:document.getElementById('ap-emoji').value.trim()||'\uD83D\uDD2C',
+    color:document.getElementById('ap-color').value,title:title,
+    desc:document.getElementById('ap-desc').value.trim(),
+    bullets:document.getElementById('ap-bullets').value.trim().split('\n').filter(Boolean),
+    stack:document.getElementById('ap-stack').value.trim().split(',').map(function(s){return s.trim();}).filter(Boolean),
+    sname:document.getElementById('ap-sname').value.trim()||null,
+    code:document.getElementById('ap-code').value.trim()||null,
+    github:document.getElementById('ap-github').value.trim()||null};
+  allP.push(np);saveProjects();renderP('all');
+  var first=document.querySelectorAll('.pf')[0];if(first)first.click();
+  closeAdmin();toast('Project added \u2713');
+}
+function changePw(){
+  var curr=document.getElementById('cpw').value,nw=document.getElementById('npw').value,cf=document.getElementById('cpw2').value,msg=document.getElementById('pwmsg');
+  if(curr!==getPW()){msg.style.cssText='display:block;color:var(--rose)';msg.textContent='\u26A0 Current password incorrect';return;}
+  if(nw.length<6){msg.style.cssText='display:block;color:var(--rose)';msg.textContent='\u26A0 Must be 6+ characters';return;}
+  if(nw!==cf){msg.style.cssText='display:block;color:var(--rose)';msg.textContent='\u26A0 Passwords do not match';return;}
+  localStorage.setItem(PK,nw);msg.style.cssText='display:block;color:var(--cyan)';msg.textContent='\u2713 Password updated';
+  ['cpw','npw','cpw2'].forEach(function(id){document.getElementById(id).value='';});
+}
+function saveContent(){
+  var f=['hero-role','hero-bio','about1','about2','about3','contact-intro'],d={};
+  f.forEach(function(fn){var el=document.querySelector('[data-field="'+fn+'"]');if(el)d[fn]=el.innerText.trim();});
+  localStorage.setItem('km_content',JSON.stringify(d));
+}
+function saveProjects(){
+  localStorage.setItem('km_projects',JSON.stringify(allP.filter(function(p){return p.id.indexOf('c-')===0;})));
+}
+function loadStorage(){
+  try{var c=JSON.parse(localStorage.getItem('km_content')||'{}');for(var f in c){var el=document.querySelector('[data-field="'+f+'"]');if(el&&c[f])el.innerText=c[f];}}catch(e){}
+  try{var cp=JSON.parse(localStorage.getItem('km_projects')||'[]');allP=PD.concat(cp);renderP();}catch(e){}
+  try{var lnk=JSON.parse(localStorage.getItem('km_links')||'{}');if(lnk.li)document.getElementById('lilink').href=lnk.li;if(lnk.gh)document.getElementById('ghlink').href=lnk.gh;}catch(e){}
+}
+loadStorage();
+
+function doMailto(){
+  var n=document.getElementById('cfn').value,e=document.getElementById('cfe').value,m=document.getElementById('cfm').value;
+  window.location.href='mailto:kmustans@CougarNet.UH.EDU?subject=Portfolio Inquiry from '+encodeURIComponent(n)+'&body='+encodeURIComponent(m+'\n\nFrom: '+e);
+}
+function toast(msg){
+  var t=document.getElementById('toast');t.textContent=msg;t.classList.add('show');
+  setTimeout(function(){t.classList.remove('show');},2400);
+}
+
+/* ── EDIT PROJECTS ── */
+function populateEditSelect(){
+  var sel=document.getElementById('ep-select');
+  sel.innerHTML='<option value="">-- Select a project --</option>';
+  allP.forEach(function(p){
+    var opt=document.createElement('option');
+    opt.value=p.id;opt.textContent=p.title.substring(0,55)+(p.title.length>55?'...':'');
+    sel.appendChild(opt);
+  });
+}
+function loadEditProject(id){
+  var fields=document.getElementById('ep-fields');
+  if(!id){fields.style.display='none';return;}
+  var p=allP.find(function(x){return x.id===id;});
+  if(!p){fields.style.display='none';return;}
+  document.getElementById('ep-title').value=p.title||'';
+  document.getElementById('ep-desc').value=p.desc||'';
+  document.getElementById('ep-github').value=p.github||'';
+  document.getElementById('ep-bullets').value=(p.bullets||[]).join('\n');
+  document.getElementById('ep-stack').value=(p.stack||[]).join(', ');
+  document.getElementById('ep-sname').value=p.sname||'';
+  document.getElementById('ep-code').value=p.code||'';
+  fields.style.display='block';
+}
+function saveEditProject(){
+  var id=document.getElementById('ep-select').value;
+  if(!id){toast('\u26A0 Select a project first');return;}
+  var idx=allP.findIndex(function(x){return x.id===id;});
+  if(idx<0)return;
+  allP[idx].title=document.getElementById('ep-title').value.trim()||allP[idx].title;
+  allP[idx].desc=document.getElementById('ep-desc').value.trim();
+  allP[idx].github=document.getElementById('ep-github').value.trim()||null;
+  allP[idx].bullets=document.getElementById('ep-bullets').value.trim().split('\n').filter(Boolean);
+  allP[idx].stack=document.getElementById('ep-stack').value.trim().split(',').map(function(s){return s.trim();}).filter(Boolean);
+  allP[idx].sname=document.getElementById('ep-sname').value.trim()||null;
+  allP[idx].code=document.getElementById('ep-code').value.trim()||null;
+  saveProjects();renderP('all');closeAdmin();toast('Project updated \u2713');
+}
+/* populate select whenever admin opens */
+var _origOpenAdmin=openAdmin;
+openAdmin=function(){_origOpenAdmin();populateEditSelect();};
+
+console.log('%c KM Portfolio | Admin password: '+getPW(),'background:#010308;color:#00f5ff;font-family:monospace;font-size:13px;padding:8px 16px;border:1px solid #00f5ff;');
+</script>
+</body>
+</html>
