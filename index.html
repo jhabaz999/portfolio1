@@ -323,11 +323,11 @@ body.amode [data-editable]:hover{outline-color:var(--rose);background:rgba(255,7
   <div class="hero-content">
     <div class="hero-tag"><div class="htdot"></div>Available for Research &amp; Collaboration</div>
     <h1 class="hero-name">KHALDOON<br><span>MUSTANSIR</span></h1>
-    <p class="hero-role" data-editable data-field="hero-role">Biomedical Engineer &middot; ML Researcher &middot; Systems Designer</p>
-    <p class="hero-bio" data-editable data-field="hero-bio">M.S. Biomedical Engineering at University of Houston (GPA&nbsp;3.89) &mdash; bridging deep learning, molecular dynamics, and intelligent systems. From classifying leukocytes with EfficientNetB3 to simulating peptide self-assembly and building LLM-powered power system analyzers. Reach me at <a href="mailto:kmustans@CougarNet.UH.EDU" class="hero-email">kmustans@cougarnet.uh.edu</a></p>
+    <p class="hero-role" data-editable data-field="hero-role">Engineer &middot; Researcher &middot; Systems Designer</p>
+    <p class="hero-bio" data-editable data-field="hero-bio">M.S. Engineering student at the University of Houston (GPA&nbsp;3.89), leveraging analytical thinking, computational methods, and systems engineering to solve complex real-world problems.<br>Reach me at <a href="mailto:kmustans@CougarNet.UH.EDU" class="hero-email">kmustans@cougarnet.uh.edu</a></p>
     <div class="hero-stats">
       <div class="hstat"><div class="hstat-n">3.89<sup>/4</sup></div><div class="hstat-l">GPA</div></div>
-      <div class="hstat"><div class="hstat-n">M.S.</div><div class="hstat-l">Eng.</div></div>
+      <div class="hstat"><div class="hstat-n">M.S.</div><div class="hstat-l">Engineering, B.S Electrical Engineering.</div></div>
       <div class="hstat"><div class="hstat-n">UH</div><div class="hstat-l">Houston, TX</div></div>
     </div>
     <div class="hero-btns">
@@ -344,13 +344,13 @@ body.amode [data-editable]:hover{outline-color:var(--rose);background:rgba(255,7
   <div class="ag">
     <div class="atext">
       <p data-editable data-field="about1">I am a Master&#39;s student in Biomedical Engineering at the University of Houston, awarded a 50% Graduate Tuition Scholarship for academic excellence. My research spans deep learning for medical imaging, molecular dynamics simulations, and computational drug discovery.</p>
-      <p data-editable data-field="about2">At the UH lab I conduct peptide self-assembly simulations using NAMD and CHARMM-GUI, and develop protein structure prediction workflows with AlphaFold2, RFdiffusion, and Boltz. I also perform end-to-end peptide synthesis using a Liberty Blue SPPS synthesizer.</p>
-      <p data-editable data-field="about3">With a background in Electrical Engineering from NED University, I bring a systems-level perspective to biomedical problems, grounded in real industrial and clinical engineering experience from roles in Pakistan.</p>
+      <p data-editable data-field="about2">At the University of Houston, I conduct research in peptide engineering, protein design, and therapeutic discovery. I combine computational modelling, experimental validation, and engineering principles to develop innovative solutions to complex scientific challenges.</p>
+      <p data-editable data-field="about3">With a background in Electrical Engineering from NED University, I bring a systems-level perspective to engineering problems, grounded in real industrial and clinical engineering experience from roles in Pakistan.</p>
     </div>
     <div class="acard">
       <div class="acard-hd">// System Profile</div>
       <div class="ar"><span class="ark">Location</span><span class="arv">Houston, Texas</span></div>
-      <div class="ar"><span class="ark">Degree</span><span class="arv">M.S. Engineering.</span></div>
+      <div class="ar"><span class="ark">Degree</span><span class="arv">M.S. Engineering, B.S. Electrical Engineering.</span></div>
       <div class="ar"><span class="ark">University</span><span class="arv">University of Houston</span></div>
       <div class="ar"><span class="ark">GPA</span><span class="arv">3.89 / 4.0</span></div>
       <div class="ar"><span class="ark">Scholarship</span><span class="arv">50% Tuition Award</span></div>
@@ -433,7 +433,7 @@ body.amode [data-editable]:hover{outline-color:var(--rose);background:rgba(255,7
   <h2 class="stitle">Get In <em>Touch</em></h2>
   <div class="cw">
     <div>
-      <p class="cintro" data-editable data-field="contact-intro">Open to research collaborations, graduate opportunities, and interesting engineering challenges &mdash; biomedical ML, molecular dynamics, or power systems. Reach out and let&#39;s build something.</p>
+      <p class="cintro" data-editable data-field="contact-intro">Open to research collaborations, graduate opportunities, and interesting engineering challenges. Reach out and let&#39;s build something.</p>
       <div class="cls">
         <a href="mailto:kmustans@CougarNet.UH.EDU" class="clink"><span>&#9993;</span> kmustans@cougarnet.uh.edu</a>
         <a href="tel:+19843900904" class="clink"><span>&#128241;</span> +1 (984) 390-0904</a>
@@ -499,6 +499,7 @@ body.amode [data-editable]:hover{outline-color:var(--rose);background:rgba(255,7
   <div class="admdw">
     <div class="admhd">
       <div class="admtitle">&#9881; ADMIN PANEL</div>
+      <button onclick="downloadHTML()" style="font-family:Share Tech Mono,monospace;font-size:.58rem;letter-spacing:.08em;text-transform:uppercase;background:transparent;border:1px solid var(--green);color:var(--green);padding:4px 11px;transition:all .2s" title="Download updated HTML for GitHub">&#8659; Export HTML</button>
       <button class="admx" onclick="closeAdmin()">&#10005;</button>
     </div>
     <div class="atabs">
@@ -534,19 +535,21 @@ body.amode [data-editable]:hover{outline-color:var(--rose);background:rgba(255,7
         <div class="abtns"><button class="abtn" onclick="addProject()">Add Project</button><button class="abg" onclick="closeAdmin()">Cancel</button></div>
       </div>
       <div class="apane" id="ap-editproj">
-        <p class="afnote">Select a project to edit its details, GitHub link, description, or Python code.</p>
-        <div class="af"><label class="afl">Select Project</label><select class="afi" id="ep-select" onchange="loadEditProject(this.value)" style="font-family:Share Tech Mono,monospace;font-size:.7rem"></select></div>
-        <div id="ep-fields" style="display:none">
+        <div id="ep-list"></div>
+        <div id="ep-form" style="display:none">
+          <div style="display:flex;align-items:center;gap:10px;margin-bottom:16px;padding-bottom:12px;border-bottom:1px solid var(--border)">
+            <button onclick="showEpList()" style="background:none;border:1px solid var(--border);color:var(--text3);font-family:Share Tech Mono,monospace;font-size:.6rem;letter-spacing:.08em;padding:5px 10px;text-transform:uppercase">&#8592; Back</button>
+            <span id="ep-form-title" style="font-family:Orbitron,monospace;font-size:.72rem;color:#fff;flex:1;overflow:hidden;text-overflow:ellipsis;white-space:nowrap"></span>
+          </div>
           <div class="af"><label class="afl">Title</label><input class="afi" id="ep-title"/></div>
           <div class="af"><label class="afl">Short Description</label><textarea class="afta" id="ep-desc"></textarea></div>
           <div class="af"><label class="afl">GitHub Repo URL</label><input class="afi" id="ep-github" placeholder="https://github.com/username/repo"/></div>
-          <div class="af"><label class="afl">Bullets (one per line)</label><textarea class="afta" id="ep-bullets"></textarea></div>
+          <div class="af"><label class="afl">Bullets (one per line)</label><textarea class="afta" id="ep-bullets" style="min-height:100px"></textarea></div>
           <div class="af"><label class="afl">Stack (comma separated)</label><input class="afi" id="ep-stack"/></div>
-          <div class="af"><label class="afl">Script Filename</label><input class="afi" id="ep-sname"/></div>
-          <div class="af"><label class="afl">Python Code</label><textarea class="afta afcode" id="ep-code"></textarea></div>
-          <div class="abtns"><button class="abtn" onclick="saveEditProject()">Save Changes</button><button class="abg" onclick="closeAdmin()">Cancel</button></div>
+          <div class="abtns"><button class="abtn" onclick="saveEditProject()">Save Changes</button><button class="abg" onclick="showEpList()">Cancel</button></div>
         </div>
       </div>
+
       <div class="apane" id="ap-links">
         <div class="af"><label class="afl">LinkedIn URL</label><input class="afi" id="a-li" placeholder="https://linkedin.com/in/..."/></div>
         <div class="af"><label class="afl">GitHub URL</label><input class="afi" id="a-gh" placeholder="https://github.com/..."/></div>
@@ -618,56 +621,56 @@ var PD=[
    desc:'Classified 4 WBC subtypes from 12,500 blood smear images using EfficientNetB3 with Squeeze-and-Excitation channel attention, achieving 92.4% test accuracy.',
    bullets:['Classified 4 WBC subtypes from 12,500 images with EfficientNetB3 + SE attention','Two-phase transfer learning: 92.4% accuracy, F1: 0.921, ROC-AUC: 0.978','Outperformed VGG19 by 4.3% using 11x fewer parameters; validated with Grad-CAM'],
    stack:['Python','TensorFlow','EfficientNetB3','SE Attention','Grad-CAM'],
-   sname:'leukocyte_classifier.py',
-   code:'# EfficientNetB3 + SE Attention -- WBC Classifier\n# Khaldoon Mustansir | University of Houston\nimport tensorflow as tf\nfrom tensorflow.keras.applications import EfficientNetB3\nfrom tensorflow.keras.layers import (\n    Dense, GlobalAveragePooling2D, Multiply, Reshape, Dropout)\nfrom tensorflow.keras.models import Model\n\ndef se_block(inputs, ratio=16):\n    ch = inputs.shape[-1]\n    x = GlobalAveragePooling2D()(inputs)\n    x = Reshape((1, 1, ch))(x)\n    x = Dense(ch // ratio, activation="relu")(x)\n    x = Dense(ch, activation="sigmoid")(x)\n    return Multiply()([inputs, x])\n\ndef build_model(num_classes=4, freeze_base=True):\n    base = EfficientNetB3(include_top=False,\n                          weights="imagenet",\n                          input_shape=(224,224,3))\n    base.trainable = not freeze_base\n    x = se_block(base.output)\n    x = GlobalAveragePooling2D()(x)\n    x = Dropout(0.4)(x)\n    x = Dense(256, activation="relu")(x)\n    x = Dropout(0.3)(x)\n    out = Dense(num_classes, activation="softmax")(x)\n    model = Model(base.input, out)\n    model.compile(optimizer=tf.keras.optimizers.Adam(1e-4),\n                  loss="categorical_crossentropy",\n                  metrics=["accuracy"])\n    return model\n\n# Phase 1 -- frozen base\nmodel = build_model(freeze_base=True)\nmodel.fit(train_ds, validation_data=val_ds, epochs=10)\n\n# Phase 2 -- fine-tune top 30 layers\nfor layer in model.layers[-30:]:\n    layer.trainable = True\nmodel.compile(optimizer=tf.keras.optimizers.Adam(1e-5),\n              loss="categorical_crossentropy",\n              metrics=["accuracy"])\nmodel.fit(train_ds, validation_data=val_ds, epochs=20)\n# Result: 92.4% acc | F1: 0.921 | ROC-AUC: 0.978'},
+   sname:null,
+   code:null},
 
   {id:'p2',cat:'ml bio',badge:'ML \u00B7 Oncology',emoji:'\uD83C\uDF97\uFE0F',color:'#a855f7',
    title:'Multimodal ML -- 10-Year Breast Cancer Survival Prediction',
    desc:'Multimodal ML pipeline integrating clinical and genomic features (CNA + mutation) to predict 10-year breast cancer survival, benchmarked across five classifiers.',
    bullets:['Pipeline integrating clinical and genomic features (CNA + mutation data)','Benchmarked five classifiers: LR, RF, SVM, XGBoost, MLP','Feature importance analysis and survival curve visualization'],
    stack:['Python','scikit-learn','Pandas','NumPy','Survival Analysis','Genomics'],
-   sname:'survival_prediction.py',
-   code:'# Multimodal Breast Cancer Survival Prediction\n# Khaldoon Mustansir | University of Houston\nimport pandas as pd\nfrom sklearn.ensemble import RandomForestClassifier\nfrom sklearn.linear_model import LogisticRegression\nfrom sklearn.model_selection import StratifiedKFold, cross_val_score\nfrom sklearn.preprocessing import StandardScaler\nfrom sklearn.pipeline import Pipeline\nfrom imblearn.over_sampling import SMOTE\n\nclinical = pd.read_csv("clinical_features.csv")\ncna      = pd.read_csv("cna_features.csv")\nmutation = pd.read_csv("mutation_features.csv")\n\ndf = (clinical.merge(cna, on="patient_id")\n              .merge(mutation, on="patient_id"))\nX = df.drop(columns=["patient_id", "survival_10yr"])\ny = df["survival_10yr"]\n\nX_res, y_res = SMOTE(random_state=42).fit_resample(X, y)\n\nmodels = {\n    "Logistic Regression": LogisticRegression(max_iter=500),\n    "Random Forest":       RandomForestClassifier(200, random_state=42),\n}\ncv = StratifiedKFold(n_splits=5, shuffle=True, random_state=42)\nfor name, clf in models.items():\n    pipe = Pipeline([("sc", StandardScaler()), ("clf", clf)])\n    auc = cross_val_score(pipe, X_res, y_res, cv=cv, scoring="roc_auc")\n    print(f"{name}: AUC = {auc.mean():.4f} +/- {auc.std():.4f}")'},
+   sname:null,
+   code:null},
 
   {id:'p3',cat:'ml',badge:'ML \u00B7 Cardiovascular',emoji:'\u2764\uFE0F',color:'#ff4d6d',
    title:'Cardiovascular Disease Risk Prediction -- CDC BRFSS',
    desc:'Complete ML pipeline on the 2021 CDC BRFSS dataset (300K+ samples) predicting cardiovascular disease from 19 key health indicators with SMOTE oversampling.',
    bullets:['Pipeline on 300K+ CDC BRFSS samples with 19 key predictors','Addressed severe class imbalance (~8% positive) with SMOTE + class weighting','Benchmarked LR, Decision Tree, Random Forest, KNN, Naive Bayes'],
    stack:['Python','scikit-learn','SMOTE','Pandas','BRFSS'],
-   sname:'cvd_risk.py',
-   code:'# Cardiovascular Disease Risk Prediction\n# CDC BRFSS 2021 | Khaldoon Mustansir\nimport pandas as pd\nfrom sklearn.model_selection import train_test_split\nfrom sklearn.ensemble import RandomForestClassifier\nfrom sklearn.linear_model import LogisticRegression\nfrom sklearn.metrics import roc_auc_score, f1_score\nfrom sklearn.preprocessing import StandardScaler\nfrom imblearn.over_sampling import SMOTE\n\nKEY = ["BMI","Smoking","AlcoholDrinking","Stroke","PhysicalHealth",\n       "MentalHealth","DiffWalking","Sex","AgeCategory","Race",\n       "Diabetic","PhysicalActivity","GenHealth","SleepTime",\n       "Asthma","KidneyDisease","SkinCancer","HeartDisease_prev"]\n\ndf = pd.read_csv("heart_2021.csv").dropna()\nX  = pd.get_dummies(df[KEY], drop_first=True)\ny  = (df["HeartDisease"]=="Yes").astype(int)\n\nX_tr,X_te,y_tr,y_te = train_test_split(X,y,test_size=.2,stratify=y,random_state=42)\nX_tr_r, y_tr_r = SMOTE(random_state=42).fit_resample(X_tr, y_tr)\nsc = StandardScaler()\nXtr = sc.fit_transform(X_tr_r); Xte = sc.transform(X_te)\n\nfor name, clf in [("LR", LogisticRegression(max_iter=500)),\n                  ("RF", RandomForestClassifier(200,n_jobs=-1))]:\n    clf.fit(Xtr, y_tr_r)\n    print(name, "AUC=", round(roc_auc_score(y_te,clf.predict_proba(Xte)[:,1]),4))'},
+   sname:null,
+   code:null},
 
   {id:'p4',cat:'comp bio',badge:'Computational \u00B7 Bio',emoji:'\u269B\uFE0F',color:'#00ff88',
    title:'Molecular Dynamics Simulations -- Peptide Self-Assembly',
    desc:'Multi-peptide MD systems investigating self-assembly behavior using NAMD and CHARMM-GUI, analyzing beta-sheet architectures at physiological ionic conditions.',
    bullets:['Multi-peptide MD systems with PyMOL, CHARMM-GUI, VMD -- eliminated orientation bias','Physiological conditions (0.15M NaCl), ACE/CT2 capping; production MD to 2-5 ms','Analyzed planar, parallel/antiparallel beta-sheet and multilayer assembly architectures'],
    stack:['NAMD','CHARMM-GUI','VMD','PyMOL','HPC','CHARMM FF'],
-   sname:'md_analysis.py',
-   code:'# MD Trajectory Analysis -- Peptide Self-Assembly\n# Khaldoon Mustansir | University of Houston\nimport MDAnalysis as mda\nimport numpy as np\nimport matplotlib.pyplot as plt\nfrom MDAnalysis.analysis import rms\n\nu = mda.Universe("system.psf", "production.dcd")\npeptides = u.select_atoms("protein")\n\nR = rms.RMSD(peptides, select="backbone")\nR.run()\nrmsd_data = R.results.rmsd.T\n\nrg = [peptides.radius_of_gyration() for ts in u.trajectory]\nrg = np.array(rg)\n\nfig, (ax1,ax2) = plt.subplots(1,2,figsize=(12,4))\nax1.plot(rmsd_data[1]/1000, rmsd_data[2], lw=1.5, color="#00ff88")\nax1.set(xlabel="Time (ns)", ylabel="RMSD (A)", title="Backbone RMSD")\nax2.plot(rg, lw=1.5, color="#a855f7")\nax2.set(xlabel="Frame", ylabel="Rg (A)", title="Radius of Gyration")\nplt.tight_layout()\nplt.savefig("md_analysis.pdf", dpi=300)'},
+   sname:null,
+   code:null},
 
   {id:'p5',cat:'comp bio',badge:'Comp \u00B7 Drug Discovery',emoji:'\uD83D\uDC8A',color:'#a855f7',
    title:'Computational Docking & Structural Prediction',
    desc:'Workflows for molecular docking, inhibitor design, and protein structure prediction using AlphaFold2, RFdiffusion, and Rosetta to study ligand-protein interactions.',
    bullets:['Structure prediction with AlphaFold2, Boltz, RFdiffusion','Inhibitor evaluation using docking scores, interface energies, RMSD','Contributed to synthesis planning and experimental binding validation'],
    stack:['AlphaFold2','RFdiffusion','Boltz','Rosetta','PyMOL','Python'],
-   sname:'docking_pipeline.py',
-   code:'# Computational Docking Pipeline\n# Khaldoon Mustansir | University of Houston\nimport subprocess, json\nimport pandas as pd\n\ndef run_alphafold(sequence, output_dir):\n    with open(f"{output_dir}/input.fasta","w") as f:\n        f.write(f">target\\n{sequence}\\n")\n    subprocess.run([\n        "python", "/alphafold/run_alphafold.py",\n        f"--fasta_paths={output_dir}/input.fasta",\n        f"--output_dir={output_dir}",\n        "--max_template_date=2023-01-01",\n        "--model_preset=monomer"\n    ], check=True)\n\ndef parse_rosetta_scores(score_file):\n    df = pd.read_csv(score_file, sep=r"\\s+", skiprows=1)\n    cols = ["total_score","dG_separated","I_sc","dSASA_int","rmsd","description"]\n    return df[[c for c in cols if c in df.columns]]\n\ndef cluster_poses(pdb_list, threshold=2.0):\n    import pyrosetta; pyrosetta.init()\n    from pyrosetta.rosetta.core.scoring import CA_rmsd\n    poses = [pyrosetta.pose_from_pdb(p) for p in pdb_list]\n    clusters = {}; assigned = set(); cid = 0\n    for i, p in enumerate(poses):\n        if i in assigned: continue\n        clusters[cid] = [pdb_list[i]]; assigned.add(i)\n        for j, q in enumerate(poses[i+1:], i+1):\n            if j not in assigned and CA_rmsd(p,q) < threshold:\n                clusters[cid].append(pdb_list[j]); assigned.add(j)\n        cid += 1\n    return clusters'},
+   sname:null,
+   code:null},
 
   {id:'p6',cat:'bio',badge:'Biomedical \u00B7 EEG',emoji:'\uD83E\uDDE0',color:'#ff4d6d',
    title:'EEG Confusion Detection: HDC vs. Deep Learning (BMI)',
    desc:'Comparative study of Hyperdimensional Computing and deep learning for EEG-based cognitive confusion detection in a brain-machine interface context.',
    bullets:['Comparative HDC vs. deep learning for EEG confusion detection','HDC encoding with hypervector binding and bundling for classification','Evaluated CNN-LSTM and transformer architectures against HDC benchmarks'],
    stack:['Python','EEG','HDC','PyTorch','MNE','BMI'],
-   sname:'eeg_confusion.py',
-   code:'# EEG Confusion Detection -- HDC vs Deep Learning\n# Khaldoon Mustansir | University of Houston\nimport numpy as np, mne\n\ndef preprocess_eeg(path, lo=1.0, hi=40.0):\n    raw = mne.io.read_raw_edf(path, preload=True)\n    raw.filter(lo, hi, fir_design="firwin")\n    raw.notch_filter(50.0)\n    return mne.make_fixed_length_epochs(raw,2.0,overlap=1.0).get_data()\n\nclass HDEncoder:\n    def __init__(self, D=10000, L=100):\n        self.D, self.L = D, L\n        self.hvs = (np.random.rand(L,D)>.5).astype(np.int8)*2-1\n    def enc_ch(self, sig):\n        bins = np.digitize(sig, np.linspace(sig.min(),sig.max(),self.L-1))\n        return np.sign(self.hvs[bins].sum(0))\n    def enc_epoch(self, epoch):\n        return np.sign(np.stack([self.enc_ch(epoch[c])\n                                 for c in range(epoch.shape[0])]).sum(0))\n\nclass HDClassifier:\n    def __init__(self, enc): self.enc=enc; self.protos={}\n    def fit(self, X, y):\n        for lbl in np.unique(y):\n            vecs = np.stack([self.enc.enc_epoch(x) for x in X[y==lbl]])\n            self.protos[lbl] = np.sign(vecs.sum(0))\n    def predict(self, X):\n        E = np.stack([self.enc.enc_epoch(x) for x in X])\n        return [max(self.protos, key=lambda l: E[i]@self.protos[l])\n                for i in range(len(E))]'},
+   sname:null,
+   code:null},
 
   {id:'p7',cat:'power',badge:'Power \u00B7 NLP/AI',emoji:'\u26A1',color:'#ffb800',
    title:'LLM-Based Power System Fault Log Analyzer',
    desc:'NLP pipeline using the Claude LLM API to parse relay trip logs, SCADA records, and protection reports -- identifying fault patterns and recommending relay adjustments.',
    bullets:['Claude API NLP pipeline to parse relay trip logs and SCADA records','Structured JSON extraction from free-text logs with relay setting recommendations','Reduced manual post-fault analysis time by ~70%; ETAP/SCADA integration ready'],
    stack:['Python','Claude API','NLP','JSON Extraction','ETAP','SCADA'],
-   sname:'fault_analyzer.py',
-   code:'# LLM Power System Fault Log Analyzer\n# Khaldoon Mustansir | University of Houston\nimport anthropic, json\nfrom dataclasses import dataclass\n\nclient = anthropic.Anthropic()\n\nPROMPT = (\n    "You are a protection relay expert. "\n    "Analyze this relay trip log and return ONLY valid JSON: "\n    \'{"fault_type":"","faulted_element":"","relay_operated":[],\'\n    \'"miscoordination":false,"root_cause":"",\'\n    \'"recommended_changes":[{"relay":"","parameter":"",\'\n    \'"current":"","suggested":"","reason":""}]}\'\n    " Log: {log}"\n)\n\n@dataclass\nclass FaultAnalysis:\n    fault_type: str\n    faulted_element: str\n    relay_operated: list\n    miscoordination: bool\n    root_cause: str\n    recommended_changes: list\n\ndef analyze(log_text):\n    r = client.messages.create(\n        model="claude-opus-4-6", max_tokens=1500,\n        messages=[{"role":"user",\n                   "content":PROMPT.format(log=log_text)}])\n    return FaultAnalysis(**json.loads(r.content[0].text))\n\ndef process_folder(folder):\n    from pathlib import Path\n    for f in Path(folder).glob("*.txt"):\n        res = analyze(f.read_text())\n        print(f"[{f.name}] {res.fault_type} miscoord={res.miscoordination}")'},
+   sname:null,
+   code:null},
 
   {id:'p8',cat:'power',badge:'Power \u00B7 Renewable',emoji:'\u2600\uFE0F',color:'#ffb800',
    title:'Solar PV Simulation with MPPT',
@@ -694,16 +697,23 @@ var PD=[
    desc:'End-to-end ML pipeline for binary fault detection on 12,000-sample MATLAB-simulated three-phase power data, combining domain-driven feature engineering with gradient boosting, stacking ensembles, a 1D CNN, and SHAP interpretability.',
    bullets:['Engineered 15 domain-informed features from symmetrical-component theory (zero-sequence current/voltage, phase imbalance indices, instantaneous power) -- expanded feature space from 6 to 21 dimensions','Built RobustScaler + Yeo-Johnson preprocessing pipeline; 5-fold StratifiedKFold CV for reliable evaluation','Trained XGBoost, LightGBM, Stacking Ensemble (RF + XGBoost + LightGBM + LR meta-learner); achieved ROC-AUC 1.000 and 99.8% accuracy','Designed 1D CNN (Conv1D + BatchNorm + GAP + Dense) to learn cross-channel fault patterns; EarlyStopping & ReduceLROnPlateau callbacks','Applied SHAP TreeExplainer -- beeswarm and waterfall plots confirmed engineered features (imbalance indices, I0) as top discriminative predictors'],
    stack:['Python','XGBoost','LightGBM','TensorFlow/Keras','SHAP','scikit-learn','1D CNN'],
-   sname:'fault_detection.py',
-   code:'# Electrical Fault Detection -- 3-Phase Power Transmission\n# Khaldoon Mustansir | University of Houston\nimport pandas as pd\nimport numpy as np\nfrom sklearn.pipeline import Pipeline\nfrom sklearn.preprocessing import RobustScaler, PowerTransformer\nfrom sklearn.model_selection import StratifiedKFold, cross_val_score\nfrom sklearn.ensemble import StackingClassifier, RandomForestClassifier\nfrom sklearn.linear_model import LogisticRegression\nfrom xgboost import XGBClassifier\nfrom lightgbm import LGBMClassifier\nimport shap, tensorflow as tf\n\n# ── Feature Engineering (symmetrical-component theory) ──\ndef engineer_features(df):\n    # Instantaneous power per phase\n    df["Pa"] = df["Va"] * df["Ia"]\n    df["Pb"] = df["Vb"] * df["Ib"]\n    df["Pc"] = df["Vc"] * df["Ic"]\n    df["P_total"] = df["Pa"] + df["Pb"] + df["Pc"]\n    # Zero-sequence quantities (ground fault indicator)\n    df["I0"] = (df["Ia"] + df["Ib"] + df["Ic"]) / 3\n    df["V0"] = (df["Va"] + df["Vb"] + df["Vc"]) / 3\n    # Absolute magnitudes\n    for col in ["Ia","Ib","Ic","Va","Vb","Vc"]:\n        df[f"|{col}|"] = df[col].abs()\n    # Apparent power per phase\n    df["Sa"] = df["|Va|"] * df["|Ia|"]\n    df["Sb"] = df["|Vb|"] * df["|Ib|"]\n    df["Sc"] = df["|Vc|"] * df["|Ic|"]\n    # Phase imbalance indices (IEC 61000-4 inspired)\n    I_cols = ["|Ia|","|Ib|","|Ic|"]\n    V_cols = ["|Va|","|Vb|","|Vc|"]\n    df["I_imbalance"] = (df[I_cols].max(1)-df[I_cols].min(1))/(df[I_cols].mean(1)+1e-9)\n    df["V_imbalance"] = (df[V_cols].max(1)-df[V_cols].min(1))/(df[V_cols].mean(1)+1e-9)\n    return df  # 6 -> 21 features\n\n# ── Preprocessing Pipeline ──\npipe = Pipeline([\n    ("robust",  RobustScaler()),           # insensitive to fault-current outliers\n    ("yeojohn", PowerTransformer(method="yeo-johnson"))  # reduces residual skew\n])\n\n# ── Stacking Ensemble ──\nbase_learners = [\n    ("rf",   RandomForestClassifier(n_estimators=300, random_state=42)),\n    ("xgb",  XGBClassifier(n_estimators=300, lr=0.05, use_label_encoder=False)),\n    ("lgbm", LGBMClassifier(n_estimators=300, learning_rate=0.05))\n]\nstack = StackingClassifier(\n    estimators=base_learners,\n    final_estimator=LogisticRegression(C=1.0),\n    cv=5, stack_method="predict_proba"\n)\ncv = StratifiedKFold(n_splits=5, shuffle=True, random_state=42)\n# Result: ROC-AUC 1.000 | Accuracy 99.8%\n\n# ── SHAP Interpretability ──\nexplainer = shap.TreeExplainer(xgb_model)\nshap_vals = explainer.shap_values(X_test)\nshap.summary_plot(shap_vals, X_test)  # beeswarm: imbalance indices rank top'},
+   sname:null,
+   code:null},
 
   {id:'p12',cat:'bio ml',badge:'BMI \u00B7 Biomedical',emoji:'\uD83E\uDDE0',color:'#ff4d6d',
    title:'Multi-Model EEG Confusion Detection: HDC vs. Deep Learning',
    desc:'BMI course project comparing Hyperdimensional Computing (HDC, D=10,000) against a 1D CNN for detecting cognitive confusion from single-channel EEG (Fp1) on 12,811 samples from 10 subjects watching educational videos.',
    bullets:['Built HDC classifier (MAP framework, D=10,000 hypervectors) and CNN (Conv2D + Dense, window=5) on the CMU Confused Student EEG dataset','CNN achieved 69.71% accuracy (+2.51% vs SVM benchmark 67.2%); HDC achieved 58.84% -- architecture mismatch explained by continuous vs spike-train signal domain','Statistical analysis: Theta most discriminative band (Cohen\u2019s d=0.332, p<0.001); 23 confusion-onset PETH transitions analyzed across 10 subjects','Preprocessing: log1p transform + MinMax normalization; sliding window feature extraction for CNN temporal context','PCA: 82.33% variance in 2D but high class overlap -- justified use of non-linear HDC and CNN decoders'],
    stack:['Python','MNE','scikit-learn','TensorFlow','HDC','EEG','NumPy','PCA'],
-   sname:'eeg_confusion_bmi.py',
-   code:'# EEG Confusion Detection -- HDC vs CNN (BMI Final Project)\n# Khaldoon Mustansir | University of Houston | Instructor: Dr. Joe Francis\nimport numpy as np, pandas as pd\nfrom sklearn.preprocessing import MinMaxScaler\nfrom sklearn.model_selection import train_test_split\nfrom sklearn.metrics import accuracy_score\nimport tensorflow as tf\n\n# ── Preprocessing ──────────────────────────────────────\ndf = pd.read_csv("EEG_data.csv")\nFEATURES = ["Delta","Theta","Alpha1","Alpha2","Beta1","Beta2","Gamma1","Gamma2","Attention","Mediation"]\nX = np.log1p(df[FEATURES].values)   # log1p: stabilises 1/f EEG distribution\nX = MinMaxScaler().fit_transform(X)  # scale to [0,1] for HDC level quantisation\ny = df["user-definedlabeln"].values\n\n# ── Hyperdimensional Computing Classifier ──────────────\nclass HDCClassifier:\n    def __init__(self, D=10000, L=100):\n        self.D, self.L = D, L\n        # Random binary level hypervectors\n        self.lvl_hvs = (np.random.rand(L, D) > .5).astype(np.int8) * 2 - 1\n    def _encode(self, x):\n        bins = np.clip((x * (self.L-1)).astype(int), 0, self.L-1)\n        # MAP: XOR-bind feature position HVs with level HVs, then bundle\n        return np.sign(np.sum(self.lvl_hvs[bins], axis=0))\n    def fit(self, X, y):\n        self.protos = {}\n        for lbl in np.unique(y):\n            hvs = np.stack([self._encode(x) for x in X[y==lbl]])\n            self.protos[lbl] = np.sign(hvs.sum(0))\n    def predict(self, X):\n        enc = np.stack([self._encode(x) for x in X])\n        return [max(self.protos, key=lambda l: enc[i]@self.protos[l])\n                for i in range(len(enc))]\n# HDC accuracy: 58.84%\n\n# ── 1D CNN Classifier ──────────────────────────────────\nWIN = 5  # 2.5-second temporal window\nXw = np.array([X[i:i+WIN] for i in range(len(X)-WIN)])\nyw = y[WIN:]\nX_tr,X_te,y_tr,y_te = train_test_split(Xw,yw,test_size=.2,stratify=yw,random_state=42)\n\nmodel = tf.keras.Sequential([\n    tf.keras.layers.Input(shape=(WIN, 10)),\n    tf.keras.layers.Conv1D(32, 3, activation="relu", padding="same"),\n    tf.keras.layers.MaxPooling1D(2),\n    tf.keras.layers.Conv1D(64, 3, activation="relu", padding="same"),\n    tf.keras.layers.GlobalAveragePooling1D(),\n    tf.keras.layers.Dense(32, activation="relu"),\n    tf.keras.layers.Dropout(0.3),\n    tf.keras.layers.Dense(1, activation="sigmoid")\n])\nmodel.compile(optimizer="adam", loss="binary_crossentropy", metrics=["accuracy"])\nmodel.fit(X_tr, y_tr, epochs=20, batch_size=64, validation_split=0.1, verbose=0)\n# CNN accuracy: 69.71% (+2.51% vs SVM benchmark 67.2%)'}
+   sname:null,
+   code:null},
+
+  {id:'p13',cat:'ml',badge:'ML \u00B7 Computer Vision',emoji:'\uD83D\uDD2C',color:'#a855f7',
+   title:'End-to-End Stroke Diagnosis and Prognosis Pipeline',
+   desc:'Integrated ML pipeline detecting stroke from brain CT scans (CNN), classifying ischemic subtypes (LAA, SVD, CE) from post-stroke DNA methylation data, and predicting 1-year motor recovery (FMA-UE) from early trajectory features.',
+   bullets:['CNN-based stroke detection from brain CT scans with computer vision preprocessing pipeline','Ischemic subtype classification (LAA, SVD, CE) from post-stroke DNA methylation features','1-year motor recovery prediction (FMA-UE) from early trajectory features using tabular ML','Combined computer vision and tabular ML in a unified inference architecture; validated against clinical outcomes data'],
+   stack:['Python','CNN','TensorFlow','scikit-learn','DNA Methylation','Computer Vision'],
+   sname:null,code:null,github:'https://github.com/jhabaz999/Stroke-Models.git'}
 ];
 
 var allP=[].concat(PD);
@@ -776,7 +786,52 @@ function switchMT(n,btn){
 
 /* AUTH */
 var PK='km_pw';
-function getPW(){return localStorage.getItem(PK)||'KM@UH2025!';}
+function _bakeHTML(base){
+  var lnk=JSON.parse(localStorage.getItem('km_links')||'{}');
+  if(lnk.li) base=base.replace(/id="lilink" href="[^"]*"/,'id="lilink" href="'+lnk.li+'"');
+  if(lnk.gh) base=base.replace(/id="ghlink" href="[^"]*"/,'id="ghlink" href="'+lnk.gh+'"');
+  var ct=JSON.parse(localStorage.getItem('km_content')||'{}');
+  ['hero-role','hero-bio','about1','about2','about3','contact-intro'].forEach(function(f){
+    if(!ct[f])return;
+    var mk='data-field="'+f+'">';
+    var i=base.indexOf(mk); if(i<0)return;
+    var s=i+mk.length,e=base.indexOf('</p>',s); if(e<0)return;
+    base=base.substring(0,s)+ct[f]+base.substring(e);
+  });
+  var ps=base.indexOf('var PD=[');
+  var pe=base.indexOf(']\u003B\n\nvar allP',ps);
+  if(ps>=0&&pe>=0){
+    var arr=allP.map(function(p){
+      return {id:p.id,cat:p.cat,badge:p.badge,emoji:p.emoji,color:p.color,
+        title:p.title,desc:p.desc,bullets:p.bullets,stack:p.stack,
+        sname:null,code:null,github:p.github||null};
+    });
+    base=base.substring(0,ps)+'var PD='+JSON.stringify(arr)+base.substring(pe+1);
+  }
+  var pw=localStorage.getItem('km_pw');
+  if(pw) base=base.replace("||'Khaldon123@'","||'"+pw+"'").replace("||'KM@UH2025!'","||'"+pw+"'");
+  return base;
+}
+function downloadHTML(){
+  toast('Exporting...');
+  fetch(window.location.href).then(function(r){return r.text();})
+    .then(function(src){
+      var out=_bakeHTML(src);
+      var blob=new Blob([out],{type:'text/html'});
+      var a=document.createElement('a');
+      a.href=URL.createObjectURL(blob); a.download='index.html';
+      document.body.appendChild(a); a.click(); document.body.removeChild(a);
+      setTimeout(function(){URL.revokeObjectURL(a.href);},1000);
+      toast('\u2713 Downloaded \u2014 upload to GitHub');
+    })
+    .catch(function(err){
+      console.error(err);
+      toast('\u26A0 Please open the site via its web link, then export');
+    });
+}
+
+
+function getPW(){return localStorage.getItem(PK)||'Khaldon123@';}
 function openLogin(){document.getElementById('lbg').classList.add('open');document.getElementById('lpin').value='';document.getElementById('lerr').style.display='none';setTimeout(function(){document.getElementById('lpin').focus();},80);}
 function closeLogin(){document.getElementById('lbg').classList.remove('open');}
 function closeLbg(e){if(e.target===document.getElementById('lbg'))closeLogin();}
@@ -790,6 +845,7 @@ function switchAT(n,btn){
   document.querySelectorAll('.atab').forEach(function(b){b.classList.remove('active');});
   document.querySelectorAll('.apane').forEach(function(p){p.classList.remove('active');});
   btn.classList.add('active');document.getElementById('ap-'+n).classList.add('active');
+  if(n==='editproj') showEpList();
 }
 function loadAdmFields(){
   var fm={'a-role':'hero-role','a-bio':'hero-bio','a-ab1':'about1','a-ab2':'about2','a-ab3':'about3','a-ci':'contact-intro'};
@@ -840,11 +896,20 @@ function saveContent(){
   localStorage.setItem('km_content',JSON.stringify(d));
 }
 function saveProjects(){
+  // Save ALL projects (built-in edits + custom) as a full snapshot
+  var snapshot=allP.map(function(p){
+    return {id:p.id,cat:p.cat,badge:p.badge,emoji:p.emoji,color:p.color,
+      title:p.title,desc:p.desc,bullets:p.bullets,stack:p.stack,
+      sname:null,code:null,github:p.github||null};
+  });
+  localStorage.setItem('km_allprojects',JSON.stringify(snapshot));
+  // Keep custom-only list for backward compat
   localStorage.setItem('km_projects',JSON.stringify(allP.filter(function(p){return p.id.indexOf('c-')===0;})));
 }
+
 function loadStorage(){
   try{var c=JSON.parse(localStorage.getItem('km_content')||'{}');for(var f in c){var el=document.querySelector('[data-field="'+f+'"]');if(el&&c[f])el.innerText=c[f];}}catch(e){}
-  try{var cp=JSON.parse(localStorage.getItem('km_projects')||'[]');allP=PD.concat(cp);renderP();}catch(e){}
+  try{var snap=JSON.parse(localStorage.getItem('km_allprojects')||'null');if(snap&&snap.length){allP=snap.map(function(s){var orig=PD.find(function(o){return o.id===s.id;});return Object.assign({},orig||{},s);});}else{var cp=JSON.parse(localStorage.getItem('km_projects')||'[]');allP=PD.concat(cp);}renderP();}catch(e){console.warn(e);}
   try{var lnk=JSON.parse(localStorage.getItem('km_links')||'{}');if(lnk.li)document.getElementById('lilink').href=lnk.li;if(lnk.gh)document.getElementById('ghlink').href=lnk.gh;}catch(e){}
 }
 loadStorage();
@@ -858,47 +923,60 @@ function toast(msg){
   setTimeout(function(){t.classList.remove('show');},2400);
 }
 
-/* ── EDIT PROJECTS ── */
-function populateEditSelect(){
-  var sel=document.getElementById('ep-select');
-  sel.innerHTML='<option value="">-- Select a project --</option>';
+/* EDIT PROJECTS */
+var _epId=null;
+function showEpList(){
+  var l=document.getElementById('ep-list'),f=document.getElementById('ep-form');
+  if(l)l.style.display='block'; if(f)f.style.display='none'; _epId=null; buildEpList();
+}
+function buildEpList(){
+  var list=document.getElementById('ep-list'); if(!list)return; list.innerHTML='';
+  var h=document.createElement('p');
+  h.style.cssText='font-size:.75rem;color:var(--text3);margin-bottom:12px;line-height:1.6';
+  h.textContent='Click any project to edit its title, description, GitHub link, bullets or stack.';
+  list.appendChild(h);
   allP.forEach(function(p){
-    var opt=document.createElement('option');
-    opt.value=p.id;opt.textContent=p.title.substring(0,55)+(p.title.length>55?'...':'');
-    sel.appendChild(opt);
+    var c=document.createElement('div');
+    c.style.cssText='padding:10px 14px;border:1px solid var(--border);margin-bottom:7px;cursor:pointer;display:flex;justify-content:space-between;align-items:center;background:rgba(255,255,255,.02);transition:all .2s';
+    c.onmouseover=function(){this.style.borderColor='var(--cyan)';this.style.background='rgba(0,245,255,.05)';};
+    c.onmouseout=function(){this.style.borderColor='var(--border)';this.style.background='rgba(255,255,255,.02)';};
+    var left=document.createElement('div');
+    var n=document.createElement('div');
+    n.style.cssText='font-family:Share Tech Mono,monospace;font-size:.68rem;color:#fff;margin-bottom:3px';
+    n.textContent=p.title.length>50?p.title.substring(0,50)+'...':p.title;
+    var m=document.createElement('div');
+    m.style.cssText='font-family:Share Tech Mono,monospace;font-size:.58rem;color:var(--text3)';
+    m.textContent=(p.github?'\u2713 GitHub  ':'')+p.cat;
+    left.appendChild(n); left.appendChild(m);
+    var ar=document.createElement('span');
+    ar.style.cssText='color:var(--cyan);font-size:.9rem'; ar.textContent='\u2192';
+    c.appendChild(left); c.appendChild(ar);
+    c.onclick=(function(id){return function(){openEpForm(id);};})(p.id);
+    list.appendChild(c);
   });
 }
-function loadEditProject(id){
-  var fields=document.getElementById('ep-fields');
-  if(!id){fields.style.display='none';return;}
-  var p=allP.find(function(x){return x.id===id;});
-  if(!p){fields.style.display='none';return;}
+function openEpForm(id){
+  var p=allP.find(function(x){return x.id===id;}); if(!p)return;
+  _epId=id;
+  document.getElementById('ep-list').style.display='none';
+  document.getElementById('ep-form').style.display='block';
+  document.getElementById('ep-form-title').textContent=p.title.length>38?p.title.substring(0,38)+'...':p.title;
   document.getElementById('ep-title').value=p.title||'';
   document.getElementById('ep-desc').value=p.desc||'';
   document.getElementById('ep-github').value=p.github||'';
   document.getElementById('ep-bullets').value=(p.bullets||[]).join('\n');
   document.getElementById('ep-stack').value=(p.stack||[]).join(', ');
-  document.getElementById('ep-sname').value=p.sname||'';
-  document.getElementById('ep-code').value=p.code||'';
-  fields.style.display='block';
 }
 function saveEditProject(){
-  var id=document.getElementById('ep-select').value;
-  if(!id){toast('\u26A0 Select a project first');return;}
-  var idx=allP.findIndex(function(x){return x.id===id;});
-  if(idx<0)return;
-  allP[idx].title=document.getElementById('ep-title').value.trim()||allP[idx].title;
+  if(!_epId){toast('\u26A0 No project selected');return;}
+  var idx=allP.findIndex(function(x){return x.id===_epId;}); if(idx<0)return;
+  var t=document.getElementById('ep-title').value.trim(); if(t)allP[idx].title=t;
   allP[idx].desc=document.getElementById('ep-desc').value.trim();
   allP[idx].github=document.getElementById('ep-github').value.trim()||null;
   allP[idx].bullets=document.getElementById('ep-bullets').value.trim().split('\n').filter(Boolean);
   allP[idx].stack=document.getElementById('ep-stack').value.trim().split(',').map(function(s){return s.trim();}).filter(Boolean);
-  allP[idx].sname=document.getElementById('ep-sname').value.trim()||null;
-  allP[idx].code=document.getElementById('ep-code').value.trim()||null;
-  saveProjects();renderP('all');closeAdmin();toast('Project updated \u2713');
+  saveProjects(); renderP('all'); showEpList(); toast('Saved \u2713');
 }
-/* populate select whenever admin opens */
-var _origOpenAdmin=openAdmin;
-openAdmin=function(){_origOpenAdmin();populateEditSelect();};
 
 console.log('%c KM Portfolio | Admin password: '+getPW(),'background:#010308;color:#00f5ff;font-family:monospace;font-size:13px;padding:8px 16px;border:1px solid #00f5ff;');
 </script>
