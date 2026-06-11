@@ -323,8 +323,9 @@ body.amode [data-editable]:hover{outline-color:var(--rose);background:rgba(255,7
   <div class="hero-content">
     <div class="hero-tag"><div class="htdot"></div>Available for Research &amp; Collaboration</div>
     <h1 class="hero-name">KHALDOON<br><span>MUSTANSIR</span></h1>
-    <p class="hero-role" data-editable data-field="hero-role">Engineer &middot; Researcher &middot; Systems Designer</p>
-    <p class="hero-bio" data-editable data-field="hero-bio">M.S. Engineering student at the University of Houston (GPA&nbsp;3.89), leveraging analytical thinking, computational methods, and systems engineering to solve complex real-world problems.<br>Reach me at <a href="mailto:kmustans@CougarNet.UH.EDU" class="hero-email">kmustans@cougarnet.uh.edu</a></p>
+    <p class="hero-role" data-editable data-field="hero-role">Engineer · Researcher · Systems Designer</p>
+    <p class="hero-bio" data-editable data-field="hero-bio">M.S. Engineering student at the University of Houston (GPA 3.89), leveraging analytical thinking, computational methods, and systems engineering to solve complex real-world problems.
+Reach me at kmustans@cougarnet.uh.edu</p>
     <div class="hero-stats">
       <div class="hstat"><div class="hstat-n">3.89<sup>/4</sup></div><div class="hstat-l">GPA</div></div>
       <div class="hstat"><div class="hstat-n">M.S.</div><div class="hstat-l">Engineering.</div></div>
@@ -343,7 +344,7 @@ body.amode [data-editable]:hover{outline-color:var(--rose);background:rgba(255,7
   <h2 class="stitle">About <em>Me</em></h2>
   <div class="ag">
     <div class="atext">
-      <p data-editable data-field="about1">I am a Master&#39;s student in Biomedical Engineering at the University of Houston, awarded a 50% Graduate Tuition Scholarship for academic excellence. My research spans deep learning for medical imaging, molecular dynamics simulations, and computational drug discovery.</p>
+      <p data-editable data-field="about1">I am a Master's student in Biomedical Engineering at the University of Houston, awarded a 50% Graduate Tuition Scholarship for academic excellence. My research spans deep learning for medical imaging, molecular dynamics simulations, and computational drug discovery.</p>
       <p data-editable data-field="about2">At the University of Houston, I conduct research in peptide engineering, protein design, and therapeutic discovery. I combine computational modelling, experimental validation, and engineering principles to develop innovative solutions to complex scientific challenges.</p>
       <p data-editable data-field="about3">With a background in Electrical Engineering from NED University, I bring a systems-level perspective to engineering problems, grounded in real industrial and clinical engineering experience from roles in Pakistan.</p>
     </div>
@@ -433,7 +434,7 @@ body.amode [data-editable]:hover{outline-color:var(--rose);background:rgba(255,7
   <h2 class="stitle">Get In <em>Touch</em></h2>
   <div class="cw">
     <div>
-      <p class="cintro" data-editable data-field="contact-intro">Open to research collaborations, graduate opportunities, and interesting engineering challenges. Reach out and let&#39;s build something.</p>
+      <p class="cintro" data-editable data-field="contact-intro">Open to research collaborations, graduate opportunities, and interesting engineering challenges. Reach out and let's build something.</p>
       <div class="cls">
         <a href="mailto:kmustans@CougarNet.UH.EDU" class="clink"><span>&#9993;</span> kmustans@cougarnet.uh.edu</a>
         <a href="tel:+19843900904" class="clink"><span>&#128241;</span> +1 (984) 390-0904</a>
@@ -615,106 +616,7 @@ var secIO=new IntersectionObserver(function(entries){
 secEls.forEach(function(el){secIO.observe(el);});
 
 /* ── PROJECT DATA ── */
-var PD=[
-  {id:'p1',cat:'ml bio',badge:'ML \u00B7 Biomedical',emoji:'\uD83E\uDE78',color:'#00f5ff',
-   title:'Automated Leukocyte Classification via EfficientNetB3 + SE Attention',
-   desc:'Classified 4 WBC subtypes from 12,500 blood smear images using EfficientNetB3 with Squeeze-and-Excitation channel attention, achieving 92.4% test accuracy.',
-   bullets:['Classified 4 WBC subtypes from 12,500 images with EfficientNetB3 + SE attention','Two-phase transfer learning: 92.4% accuracy, F1: 0.921, ROC-AUC: 0.978','Outperformed VGG19 by 4.3% using 11x fewer parameters; validated with Grad-CAM'],
-   stack:['Python','TensorFlow','EfficientNetB3','SE Attention','Grad-CAM'],
-   sname:null,
-   code:null},
-
-  {id:'p2',cat:'ml bio',badge:'ML \u00B7 Oncology',emoji:'\uD83C\uDF97\uFE0F',color:'#a855f7',
-   title:'Multimodal ML -- 10-Year Breast Cancer Survival Prediction',
-   desc:'Multimodal ML pipeline integrating clinical and genomic features (CNA + mutation) to predict 10-year breast cancer survival, benchmarked across five classifiers.',
-   bullets:['Pipeline integrating clinical and genomic features (CNA + mutation data)','Benchmarked five classifiers: LR, RF, SVM, XGBoost, MLP','Feature importance analysis and survival curve visualization'],
-   stack:['Python','scikit-learn','Pandas','NumPy','Survival Analysis','Genomics'],
-   sname:null,
-   code:null},
-
-  {id:'p3',cat:'ml',badge:'ML \u00B7 Cardiovascular',emoji:'\u2764\uFE0F',color:'#ff4d6d',
-   title:'Cardiovascular Disease Risk Prediction -- CDC BRFSS',
-   desc:'Complete ML pipeline on the 2021 CDC BRFSS dataset (300K+ samples) predicting cardiovascular disease from 19 key health indicators with SMOTE oversampling.',
-   bullets:['Pipeline on 300K+ CDC BRFSS samples with 19 key predictors','Addressed severe class imbalance (~8% positive) with SMOTE + class weighting','Benchmarked LR, Decision Tree, Random Forest, KNN, Naive Bayes'],
-   stack:['Python','scikit-learn','SMOTE','Pandas','BRFSS'],
-   sname:null,
-   code:null},
-
-  {id:'p4',cat:'comp bio',badge:'Computational \u00B7 Bio',emoji:'\u269B\uFE0F',color:'#00ff88',
-   title:'Molecular Dynamics Simulations -- Peptide Self-Assembly',
-   desc:'Multi-peptide MD systems investigating self-assembly behavior using NAMD and CHARMM-GUI, analyzing beta-sheet architectures at physiological ionic conditions.',
-   bullets:['Multi-peptide MD systems with PyMOL, CHARMM-GUI, VMD -- eliminated orientation bias','Physiological conditions (0.15M NaCl), ACE/CT2 capping; production MD to 2-5 ms','Analyzed planar, parallel/antiparallel beta-sheet and multilayer assembly architectures'],
-   stack:['NAMD','CHARMM-GUI','VMD','PyMOL','HPC','CHARMM FF'],
-   sname:null,
-   code:null},
-
-  {id:'p5',cat:'comp bio',badge:'Comp \u00B7 Drug Discovery',emoji:'\uD83D\uDC8A',color:'#a855f7',
-   title:'Computational Docking & Structural Prediction',
-   desc:'Workflows for molecular docking, inhibitor design, and protein structure prediction using AlphaFold2, RFdiffusion, and Rosetta to study ligand-protein interactions.',
-   bullets:['Structure prediction with AlphaFold2, Boltz, RFdiffusion','Inhibitor evaluation using docking scores, interface energies, RMSD','Contributed to synthesis planning and experimental binding validation'],
-   stack:['AlphaFold2','RFdiffusion','Boltz','Rosetta','PyMOL','Python'],
-   sname:null,
-   code:null},
-
-  {id:'p6',cat:'bio',badge:'Biomedical \u00B7 EEG',emoji:'\uD83E\uDDE0',color:'#ff4d6d',
-   title:'EEG Confusion Detection: HDC vs. Deep Learning (BMI)',
-   desc:'Comparative study of Hyperdimensional Computing and deep learning for EEG-based cognitive confusion detection in a brain-machine interface context.',
-   bullets:['Comparative HDC vs. deep learning for EEG confusion detection','HDC encoding with hypervector binding and bundling for classification','Evaluated CNN-LSTM and transformer architectures against HDC benchmarks'],
-   stack:['Python','EEG','HDC','PyTorch','MNE','BMI'],
-   sname:null,
-   code:null},
-
-  {id:'p7',cat:'power',badge:'Power \u00B7 NLP/AI',emoji:'\u26A1',color:'#ffb800',
-   title:'LLM-Based Power System Fault Log Analyzer',
-   desc:'NLP pipeline using the Claude LLM API to parse relay trip logs, SCADA records, and protection reports -- identifying fault patterns and recommending relay adjustments.',
-   bullets:['Claude API NLP pipeline to parse relay trip logs and SCADA records','Structured JSON extraction from free-text logs with relay setting recommendations','Reduced manual post-fault analysis time by ~70%; ETAP/SCADA integration ready'],
-   stack:['Python','Claude API','NLP','JSON Extraction','ETAP','SCADA'],
-   sname:null,
-   code:null},
-
-  {id:'p8',cat:'power',badge:'Power \u00B7 Renewable',emoji:'\u2600\uFE0F',color:'#ffb800',
-   title:'Solar PV Simulation with MPPT',
-   desc:'Solar PV system in MATLAB/Simulink with MPPT via Perturb & Observe algorithm and a Boost DC-DC converter, validated against theoretical I-V and P-V curves.',
-   bullets:['Solar PV model in MATLAB/Simulink with Perturb & Observe MPPT','Boost DC-DC converter design; efficiency and transient analysis','Validated against theoretical PV I-V and P-V characteristic curves'],
-   stack:['MATLAB','Simulink','MPPT','DC-DC Converter','PV Systems'],
-   sname:null,code:null},
-
-  {id:'p9',cat:'bio',badge:'Biomedical \u00B7 Wearable',emoji:'\uD83D\uDCE1',color:'#a855f7',
-   title:'Wearable Headset for Real-Time Epileptic Seizure Monitoring',
-   desc:'Wearable EEG headset with embedded detection algorithms and real-time alerting to caregivers via an Android application.',
-   bullets:['Wearable EEG headset with embedded real-time seizure detection','Android caregiver alerting app with customizable thresholds','Continuous monitoring with low-latency signal acquisition'],
-   stack:['EEG Hardware','Embedded C','Android','Signal Processing','BLE'],
-   sname:null,code:null},
-
-  {id:'p10',cat:'power',badge:'Power \u00B7 GIS',emoji:'\uD83D\uDDFA\uFE0F',color:'#ffb800',
-   title:'Decision-Support GUI for Power Generation Planning',
-   desc:'Intelligent GUI integrating geospatial, climatological, and energy-demand data to recommend optimal generation technology for specific regional conditions.',
-   bullets:['GUI integrating GIS, climate data, and energy-demand modeling','Recommends solar, wind, hydro, or thermal for regional conditions','Validated against real-world energy planning datasets'],
-   stack:['Python','Tkinter','GIS','Energy Modeling'],sname:null,code:null},
-
-  {id:'p11',cat:'power ml',badge:'Power \u00B7 ML/AI',emoji:'\u26A1',color:'#ffb800',
-   title:'Electrical Fault Detection in Three-Phase Power Transmission Systems',
-   desc:'End-to-end ML pipeline for binary fault detection on 12,000-sample MATLAB-simulated three-phase power data, combining domain-driven feature engineering with gradient boosting, stacking ensembles, a 1D CNN, and SHAP interpretability.',
-   bullets:['Engineered 15 domain-informed features from symmetrical-component theory (zero-sequence current/voltage, phase imbalance indices, instantaneous power) -- expanded feature space from 6 to 21 dimensions','Built RobustScaler + Yeo-Johnson preprocessing pipeline; 5-fold StratifiedKFold CV for reliable evaluation','Trained XGBoost, LightGBM, Stacking Ensemble (RF + XGBoost + LightGBM + LR meta-learner); achieved ROC-AUC 1.000 and 99.8% accuracy','Designed 1D CNN (Conv1D + BatchNorm + GAP + Dense) to learn cross-channel fault patterns; EarlyStopping & ReduceLROnPlateau callbacks','Applied SHAP TreeExplainer -- beeswarm and waterfall plots confirmed engineered features (imbalance indices, I0) as top discriminative predictors'],
-   stack:['Python','XGBoost','LightGBM','TensorFlow/Keras','SHAP','scikit-learn','1D CNN'],
-   sname:null,
-   code:null},
-
-  {id:'p12',cat:'bio ml',badge:'BMI \u00B7 Biomedical',emoji:'\uD83E\uDDE0',color:'#ff4d6d',
-   title:'Multi-Model EEG Confusion Detection: HDC vs. Deep Learning',
-   desc:'BMI course project comparing Hyperdimensional Computing (HDC, D=10,000) against a 1D CNN for detecting cognitive confusion from single-channel EEG (Fp1) on 12,811 samples from 10 subjects watching educational videos.',
-   bullets:['Built HDC classifier (MAP framework, D=10,000 hypervectors) and CNN (Conv2D + Dense, window=5) on the CMU Confused Student EEG dataset','CNN achieved 69.71% accuracy (+2.51% vs SVM benchmark 67.2%); HDC achieved 58.84% -- architecture mismatch explained by continuous vs spike-train signal domain','Statistical analysis: Theta most discriminative band (Cohen\u2019s d=0.332, p<0.001); 23 confusion-onset PETH transitions analyzed across 10 subjects','Preprocessing: log1p transform + MinMax normalization; sliding window feature extraction for CNN temporal context','PCA: 82.33% variance in 2D but high class overlap -- justified use of non-linear HDC and CNN decoders'],
-   stack:['Python','MNE','scikit-learn','TensorFlow','HDC','EEG','NumPy','PCA'],
-   sname:null,
-   code:null},
-
-  {id:'p13',cat:'ml',badge:'ML \u00B7 Computer Vision',emoji:'\uD83D\uDD2C',color:'#a855f7',
-   title:'End-to-End Stroke Diagnosis and Prognosis Pipeline',
-   desc:'Integrated ML pipeline detecting stroke from brain CT scans (CNN), classifying ischemic subtypes (LAA, SVD, CE) from post-stroke DNA methylation data, and predicting 1-year motor recovery (FMA-UE) from early trajectory features.',
-   bullets:['CNN-based stroke detection from brain CT scans with computer vision preprocessing pipeline','Ischemic subtype classification (LAA, SVD, CE) from post-stroke DNA methylation features','1-year motor recovery prediction (FMA-UE) from early trajectory features using tabular ML','Combined computer vision and tabular ML in a unified inference architecture; validated against clinical outcomes data'],
-   stack:['Python','CNN','TensorFlow','scikit-learn','DNA Methylation','Computer Vision'],
-   sname:null,code:null,github:'https://github.com/jhabaz999/Stroke-Models.git'}
-];
+var PD=[{"id":"p1","cat":"ml bio","badge":"ML · Biomedical","emoji":"🩸","color":"#00f5ff","title":"Automated Leukocyte Classification via EfficientNetB3 + SE Attention","desc":"Classified 4 WBC subtypes from 12,500 blood smear images using EfficientNetB3 with Squeeze-and-Excitation channel attention, achieving 92.4% test accuracy.","bullets":["Classified 4 WBC subtypes from 12,500 images with EfficientNetB3 + SE attention","Two-phase transfer learning: 92.4% accuracy, F1: 0.921, ROC-AUC: 0.978","Outperformed VGG19 by 4.3% using 11x fewer parameters; validated with Grad-CAM"],"stack":["Python","TensorFlow","EfficientNetB3","SE Attention","Grad-CAM"],"sname":null,"code":null,"github":"https://github.com/jhabaz999/bloodcellML.git"},{"id":"p2","cat":"ml bio","badge":"ML · Oncology","emoji":"🎗️","color":"#a855f7","title":"Multimodal ML -- 10-Year Breast Cancer Survival Prediction","desc":"Multimodal ML pipeline integrating clinical and genomic features (CNA + mutation) to predict 10-year breast cancer survival, benchmarked across five classifiers.","bullets":["Pipeline integrating clinical and genomic features (CNA + mutation data)","Benchmarked five classifiers: LR, RF, SVM, XGBoost, MLP","Feature importance analysis and survival curve visualization"],"stack":["Python","scikit-learn","Pandas","NumPy","Survival Analysis","Genomics"],"sname":null,"code":null,"github":"https://github.com/jhabaz999/BreastCancer_Survival_Prediction.git"},{"id":"p3","cat":"ml","badge":"ML · Cardiovascular","emoji":"❤️","color":"#ff4d6d","title":"Cardiovascular Disease Risk Prediction -- CDC BRFSS","desc":"Complete ML pipeline on the 2021 CDC BRFSS dataset (300K+ samples) predicting cardiovascular disease from 19 key health indicators with SMOTE oversampling.","bullets":["Pipeline on 300K+ CDC BRFSS samples with 19 key predictors","Addressed severe class imbalance (~8% positive) with SMOTE + class weighting","Benchmarked LR, Decision Tree, Random Forest, KNN, Naive Bayes"],"stack":["Python","scikit-learn","SMOTE","Pandas","BRFSS"],"sname":null,"code":null,"github":"https://github.com/jhabaz999/Cardiovascular-Disease-Risk-Prediction.git"},{"id":"p4","cat":"comp bio","badge":"Computational · Bio","emoji":"⚛️","color":"#00ff88","title":"Molecular Dynamics Simulations -- Peptide Self-Assembly","desc":"Multi-peptide MD systems investigating self-assembly behavior using NAMD and CHARMM-GUI, analyzing beta-sheet architectures at physiological ionic conditions.","bullets":["Multi-peptide MD systems with PyMOL, CHARMM-GUI, VMD -- eliminated orientation bias","Physiological conditions (0.15M NaCl), ACE/CT2 capping; production MD to 2-5 ms","Analyzed planar, parallel/antiparallel beta-sheet and multilayer assembly architectures"],"stack":["NAMD","CHARMM-GUI","VMD","PyMOL","HPC","CHARMM FF"],"sname":null,"code":null,"github":null},{"id":"p5","cat":"comp bio","badge":"Comp · Drug Discovery","emoji":"💊","color":"#a855f7","title":"Computational Docking & Structural Prediction","desc":"Workflows for molecular docking, inhibitor design, and protein structure prediction using AlphaFold2, RFdiffusion, and Rosetta to study ligand-protein interactions.","bullets":["Structure prediction with AlphaFold2, Boltz, RFdiffusion","Inhibitor evaluation using docking scores, interface energies, RMSD","Contributed to synthesis planning and experimental binding validation"],"stack":["AlphaFold2","RFdiffusion","Boltz","Rosetta","PyMOL","Python"],"sname":null,"code":null,"github":null},{"id":"p6","cat":"bio","badge":"Biomedical · EEG","emoji":"🧠","color":"#ff4d6d","title":"EEG Confusion Detection: HDC vs. Deep Learning (BMI)","desc":"Comparative study of Hyperdimensional Computing and deep learning for EEG-based cognitive confusion detection in a brain-machine interface context.","bullets":["Comparative HDC vs. deep learning for EEG confusion detection","HDC encoding with hypervector binding and bundling for classification","Evaluated CNN-LSTM and transformer architectures against HDC benchmarks"],"stack":["Python","EEG","HDC","PyTorch","MNE","BMI"],"sname":null,"code":null,"github":"https://github.com/jhabaz999/Multi-Model-EEG-Confusion-Detection.git"},{"id":"p7","cat":"power","badge":"Power · NLP/AI","emoji":"⚡","color":"#ffb800","title":"LLM-Based Power System Fault Log Analyzer","desc":"NLP pipeline using the Claude LLM API to parse relay trip logs, SCADA records, and protection reports -- identifying fault patterns and recommending relay adjustments.","bullets":["Claude API NLP pipeline to parse relay trip logs and SCADA records","Structured JSON extraction from free-text logs with relay setting recommendations","Reduced manual post-fault analysis time by ~70%; ETAP/SCADA integration ready"],"stack":["Python","Claude API","NLP","JSON Extraction","ETAP","SCADA"],"sname":null,"code":null,"github":null},{"id":"p8","cat":"power","badge":"Power · Renewable","emoji":"☀️","color":"#ffb800","title":"Solar PV Simulation with MPPT","desc":"Solar PV system in MATLAB/Simulink with MPPT via Perturb & Observe algorithm and a Boost DC-DC converter, validated against theoretical I-V and P-V curves.","bullets":["Solar PV model in MATLAB/Simulink with Perturb & Observe MPPT","Boost DC-DC converter design; efficiency and transient analysis","Validated against theoretical PV I-V and P-V characteristic curves"],"stack":["MATLAB","Simulink","MPPT","DC-DC Converter","PV Systems"],"sname":null,"code":null,"github":null},{"id":"p9","cat":"bio","badge":"Biomedical · Wearable","emoji":"📡","color":"#a855f7","title":"Wearable Headset for Real-Time Epileptic Seizure Monitoring","desc":"Wearable EEG headset with embedded detection algorithms and real-time alerting to caregivers via an Android application.","bullets":["Wearable EEG headset with embedded real-time seizure detection","Android caregiver alerting app with customizable thresholds","Continuous monitoring with low-latency signal acquisition"],"stack":["EEG Hardware","Embedded C","Android","Signal Processing","BLE"],"sname":null,"code":null,"github":null},{"id":"p10","cat":"power","badge":"Power · GIS","emoji":"🗺️","color":"#ffb800","title":"Decision-Support GUI for Power Generation Planning","desc":"Intelligent GUI integrating geospatial, climatological, and energy-demand data to recommend optimal generation technology for specific regional conditions.","bullets":["GUI integrating GIS, climate data, and energy-demand modeling","Recommends solar, wind, hydro, or thermal for regional conditions","Validated against real-world energy planning datasets"],"stack":["Python","Tkinter","GIS","Energy Modeling"],"sname":null,"code":null,"github":null},{"id":"p11","cat":"power ml","badge":"Power · ML/AI","emoji":"⚡","color":"#ffb800","title":"Electrical Fault Detection in Three-Phase Power Transmission Systems","desc":"End-to-end ML pipeline for binary fault detection on 12,000-sample MATLAB-simulated three-phase power data, combining domain-driven feature engineering with gradient boosting, stacking ensembles, a 1D CNN, and SHAP interpretability.","bullets":["Engineered 15 domain-informed features from symmetrical-component theory (zero-sequence current/voltage, phase imbalance indices, instantaneous power) -- expanded feature space from 6 to 21 dimensions","Built RobustScaler + Yeo-Johnson preprocessing pipeline; 5-fold StratifiedKFold CV for reliable evaluation","Trained XGBoost, LightGBM, Stacking Ensemble (RF + XGBoost + LightGBM + LR meta-learner); achieved ROC-AUC 1.000 and 99.8% accuracy","Designed 1D CNN (Conv1D + BatchNorm + GAP + Dense) to learn cross-channel fault patterns; EarlyStopping & ReduceLROnPlateau callbacks","Applied SHAP TreeExplainer -- beeswarm and waterfall plots confirmed engineered features (imbalance indices, I0) as top discriminative predictors"],"stack":["Python","XGBoost","LightGBM","TensorFlow/Keras","SHAP","scikit-learn","1D CNN"],"sname":null,"code":null,"github":"https://github.com/jhabaz999/ElecFaultDetec.git"},{"id":"p12","cat":"bio ml","badge":"BMI · Biomedical","emoji":"🧠","color":"#ff4d6d","title":"Multi-Model EEG Confusion Detection: HDC vs. Deep Learning","desc":"BMI course project comparing Hyperdimensional Computing (HDC, D=10,000) against a 1D CNN for detecting cognitive confusion from single-channel EEG (Fp1) on 12,811 samples from 10 subjects watching educational videos.","bullets":["Built HDC classifier (MAP framework, D=10,000 hypervectors) and CNN (Conv2D + Dense, window=5) on the CMU Confused Student EEG dataset","CNN achieved 69.71% accuracy (+2.51% vs SVM benchmark 67.2%); HDC achieved 58.84% -- architecture mismatch explained by continuous vs spike-train signal domain","Statistical analysis: Theta most discriminative band (Cohen’s d=0.332, p<0.001); 23 confusion-onset PETH transitions analyzed across 10 subjects","Preprocessing: log1p transform + MinMax normalization; sliding window feature extraction for CNN temporal context","PCA: 82.33% variance in 2D but high class overlap -- justified use of non-linear HDC and CNN decoders"],"stack":["Python","MNE","scikit-learn","TensorFlow","HDC","EEG","NumPy","PCA"],"sname":null,"code":null,"github":null},{"id":"p13","cat":"ml","badge":"ML · Computer Vision","emoji":"🔬","color":"#a855f7","title":"End-to-End Stroke Diagnosis and Prognosis Pipeline","desc":"Integrated ML pipeline detecting stroke from brain CT scans (CNN), classifying ischemic subtypes (LAA, SVD, CE) from post-stroke DNA methylation data, and predicting 1-year motor recovery (FMA-UE) from early trajectory features.","bullets":["CNN-based stroke detection from brain CT scans with computer vision preprocessing pipeline","Ischemic subtype classification (LAA, SVD, CE) from post-stroke DNA methylation features","1-year motor recovery prediction (FMA-UE) from early trajectory features using tabular ML","Combined computer vision and tabular ML in a unified inference architecture; validated against clinical outcomes data"],"stack":["Python","CNN","TensorFlow","scikit-learn","DNA Methylation","Computer Vision"],"sname":null,"code":null,"github":"https://github.com/jhabaz999/Stroke-Models.git"},{"id":"c-1780949774375","cat":"ml","badge":"Project","emoji":"🔬","color":"#010308","title":"Coming Soon!","desc":"","bullets":[],"stack":[],"sname":null,"code":null,"github":null}];
 
 var allP=[].concat(PD);
 
@@ -809,7 +711,7 @@ function _bakeHTML(base){
     base=base.substring(0,ps)+'var PD='+JSON.stringify(arr)+base.substring(pe+1);
   }
   var pw=localStorage.getItem('km_pw');
-  if(pw) base=base.replace("||'Khaldon123@'","||'"+pw+"'").replace("||'KM@UH2025!'","||'"+pw+"'");
+  if(pw) base=base.replace("||'Khaldon123@'","||'"+pw+"'").replace("||'Khaldon123@'","||'"+pw+"'");
   return base;
 }
 function downloadHTML(){
